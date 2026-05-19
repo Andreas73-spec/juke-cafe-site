@@ -1,3 +1,6 @@
+---
+permalink: /menukaart-print.html
+---
 <!doctype html>
 <html lang="nl">
 <head>
@@ -371,111 +374,80 @@
       <li><strong>Sage groen</strong> — getrouw aan het originele ontwerp, met donker logo</li>
       <li><strong>JuKe</strong> — in de kleuren van de website, met midnight + pink logo</li>
     </ul>
-    <p><strong>Tip:</strong> klik om te printen of als PDF te bewaren. Print dubbelzijdig op A4 portrait.</p>
+    <p><strong>Tip:</strong> klik om te printen of als PDF te bewaren. Print dubbelzijdig op A4 portrait. De menu-items komen automatisch uit de CMS-menukaart — dus pas je daar iets aan, dan staat het hier ook.</p>
     <button onclick="window.print()">🖨️ Print of bewaar als PDF</button>
   </div>
 
-  <!-- ============================================
-       SAGE — VOORKANT
-       ============================================ -->
-  <section class="card-page sage">
+  {# ─── Macro: items van een sectie renderen ─── #}
+  {% macro renderItems(items) %}
+    <ul class="menu-list">
+      {% for item in items %}
+      <li>
+        <div>
+          <div class="item-name">{{ item.naam }}{% if item.vega %} <span class="vega"></span>{% endif %}</div>
+          {% if item.beschrijving %}<div class="item-desc">{{ item.beschrijving }}</div>{% endif %}
+        </div>
+        <div class="item-price">{{ item.prijs }}</div>
+      </li>
+      {% endfor %}
+    </ul>
+  {% endmacro %}
+
+  {# ─── Macro: wijnen renderen ─── #}
+  {% macro renderWijnen(subsecties) %}
+    <div class="wijnen-list">
+      {% for sub in subsecties %}
+        <div class="sub-cat">{{ sub.titel }}:</div>
+        {% for w in sub.items %}
+        <div style="margin-bottom:2mm;">
+          <div class="wine-name">{{ w.naam }}</div>
+          <div class="wine-price">€ {{ w.prijs | replace(" — ", " — € ") }}</div>
+        </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% endmacro %}
+
+  {# ─── Macro: complete VOORKANT (sage of juke) ─── #}
+  {% macro renderFront(variant, logoSrc) %}
+  <section class="card-page {{ variant }}">
     <header class="head-front">
       <div class="head-title">
-        <img src="images/logo-donker.png" alt="JuKe Café logo" />
+        <img src="images/{{ logoSrc }}" alt="JuKe Café logo" />
         <div class="at">@ de uitkijk</div>
       </div>
       <img class="head-tray" src="images/illu-tray.png" alt="Wijnglazen op dienblad" />
     </header>
 
     <div class="grid-front">
-      <!-- Left: Voor bij de koffie + Borrelplanken -->
       <div>
         <div class="section-box" data-label="VOOR BIJ DE KOFFIE">
-          <ul class="menu-list">
-            <li>
-              <div><div class="item-name">Opa's appelkruimel gebak</div>
-                <div class="item-desc">Naar het recept van de oude brood- en banketbakkerij Westveen uit Nieuwersluis.</div></div>
-              <div class="item-price">5,25</div>
-            </li>
-            <li>
-              <div><div class="item-name">Bananenbrood</div>
-                <div class="item-desc">Vers bereid.</div></div>
-              <div class="item-price">4,25</div>
-            </li>
-            <li>
-              <div><div class="item-name">Weekend special</div>
-                <div class="item-desc">Elk weekend een wisselende zoete verrassing afgestemd op het seizoen.</div></div>
-              <div class="item-price">5,25</div>
-            </li>
-          </ul>
+          {{ renderItems(menu.secties[0].items) }}
         </div>
 
         <div class="section-box" data-label="BORRELPLANKEN">
-          <ul class="menu-list">
-            <li>
-              <div><div class="item-name">JuKe's borrelplank klassiek</div>
-                <div class="item-desc">Kaas, charcuterie, dips, olijven en brood.</div></div>
-              <div class="item-price">25,00</div>
-            </li>
-            <li>
-              <div><div class="item-name">JuKe's borrelplank deluxe</div>
-                <div class="item-desc">De heerlijke smaak van de klassieke borrelplank met luxere signature JuKe aanvullingen.</div></div>
-              <div class="item-price">32,50</div>
-            </li>
-          </ul>
+          {{ renderItems(menu.secties[2].items) }}
           <p class="allergen-note" style="text-align: left; font-size: 8pt; margin-top: 3mm;">* Planken uitbreiden? Kijk snel op de achterkant voor extra borrelhapjes!</p>
         </div>
       </div>
 
-      <!-- Right: Verse broodjes -->
       <div>
         <div class="section-box" data-label="VERSE BROODJES" style="flex: 1;">
-          <ul class="menu-list">
-            <li>
-              <div><div class="item-name">Mortadella</div>
-                <div class="item-desc">Met burrata, perzik en crispy chili oil.</div></div>
-              <div class="item-price">12,50</div>
-            </li>
-            <li>
-              <div><div class="item-name">Carpaccio</div>
-                <div class="item-desc">Pesto, zongedroogde tomaatjes, rucola, rode ui, kappertjes, parmezaan en saladepitjes.</div></div>
-              <div class="item-price">12,50</div>
-            </li>
-            <li>
-              <div><div class="item-name">Tonijnsalade</div>
-                <div class="item-desc">Broodje met huisgemaakte tonijnsalade afgetopt met diverse garnituren.</div></div>
-              <div class="item-price">10,50</div>
-            </li>
-            <li>
-              <div><div class="item-name">Tosti brie <span class="vega"></span></div>
-                <div class="item-desc">Met gekarameliseerde ui, vijgenjam en saladegarnituur.</div></div>
-              <div class="item-price">9,50</div>
-            </li>
-            <li>
-              <div><div class="item-name">Flammkuchen à la JuKe <span class="vega"></span></div>
-                <div class="item-desc">Frisse tomaatjes, rucola, féta en verse kruiden.</div></div>
-              <div class="item-price">12,50</div>
-            </li>
-            <li>
-              <div><div class="item-name">Seizoenssalade</div>
-                <div class="item-desc">Heerlijke salade met seizoensproducten, vraag de bediening naar de special van de dag.</div></div>
-              <div class="item-price">11,50</div>
-            </li>
-          </ul>
+          {{ renderItems(menu.secties[1].items) }}
         </div>
       </div>
     </div>
 
     <div class="psst-footer">
-      <div class="psst">"Psst… wist je al dat alles van onze menukaart ook afgehaald kan worden? Heerlijk voor op de boot, mee naar huis of lekker onderweg!"</div>
+      <div class="psst">"{{ menu.voetnoot_takeaway_intro }}{{ menu.voetnoot_takeaway_bold }}{{ menu.voetnoot_takeaway_outro }}"</div>
       <div class="geniet">Geniet ervan!</div>
     </div>
   </section>
+  {% endmacro %}
 
-  <!-- ============================================
-       SAGE — ACHTERKANT
-       ============================================ -->
-  <section class="card-page sage">
+  {# ─── Macro: complete ACHTERKANT (sage of juke) ─── #}
+  {% macro renderBack(variant) %}
+  <section class="card-page {{ variant }}">
     <header class="head-back">
       <h1>DELEN  =  GENIETEN</h1>
     </header>
@@ -483,64 +455,18 @@
     <div class="grid-back">
       <div>
         <div class="section-box" data-label="WARME HAPPEN">
-          <ul class="menu-list">
-            <li><div><div class="item-name">Rundvlees bitterballen <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
-            <li><div><div class="item-name">Kaasstengels <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
-            <li><div><div class="item-name">Gehaktballetjes in huisgemaakte tomatensaus <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
-            <li><div><div class="item-name">Camembert uit de oven</div><div class="item-desc">Met rozemarijn en dipcrackers.</div></div><div class="item-price">9,50</div></li>
-            <li><div><div class="item-name">Crispy bloemkool bites</div></div><div class="item-price">9,50</div></li>
-            <li><div><div class="item-name">Vega loaded nacho's</div><div class="item-desc">Met verse guacamole.</div></div><div class="item-price">11,50</div></li>
-          </ul>
+          {{ renderItems(menu.secties[3].items) }}
           <p class="allergen-note">Heeft u allergieën of dieetwensen? Laat het ons weten, dan kunnen wij er eventueel rekening mee houden.</p>
         </div>
 
         <div class="section-box" data-label="WIJNEN">
-          <div class="wijnen-list">
-            <div class="sub-cat">Wit:</div>
-            <div style="margin-bottom:2mm;">
-              <div class="wine-name">Viognier Les Vignerons de Florensac</div>
-              <div class="wine-price">€ 4,95 — € 27,50</div>
-            </div>
-            <div style="margin-bottom:2mm;">
-              <div class="wine-name">Chardonnay Les Vignerons de Florensac</div>
-              <div class="wine-price">€ 4,95 — € 27,50</div>
-            </div>
-            <div style="margin-bottom:2mm;">
-              <div class="wine-name">Grüner Veltliner 'Lehm &amp; Löss' Weingut Julius Klein</div>
-              <div class="wine-price">€ 5,75 — € 32,50</div>
-            </div>
-
-            <div class="sub-cat">Rosé:</div>
-            <div style="margin-bottom:2mm;">
-              <div class="wine-name">Instant Rosé Domaine les Charmettes</div>
-              <div class="wine-price">€ 4,95 — € 27,50</div>
-            </div>
-
-            <div class="sub-cat">Rood:</div>
-            <div style="margin-bottom:2mm;">
-              <div class="wine-name">Primitivo Negroamaro Salento Bacca Nera, Casa Vinicola Botter</div>
-              <div class="wine-price">€ 4,95 — € 27,50</div>
-            </div>
-
-            <div class="sub-cat">Cava:</div>
-            <div>
-              <div class="wine-name">Brut Nature 'Mas Suau' Ferré i Catasús</div>
-              <div class="wine-price">€ 7,50 — € 37,50</div>
-            </div>
-          </div>
+          {{ renderWijnen(menu.secties[5].subsecties) }}
         </div>
       </div>
 
       <div>
         <div class="section-box" data-label="KOUDE HAPPEN">
-          <ul class="menu-list">
-            <li><div><div class="item-name">Gemarineerde olijven &amp; nootjes</div></div><div class="item-price">5,50</div></li>
-            <li><div><div class="item-name">Brood met verse dips</div></div><div class="item-price">8,00</div></li>
-            <li><div><div class="item-name">Padron pepers</div></div><div class="item-price">8,00</div></li>
-            <li><div><div class="item-name">Tomatentartaar met burrata</div><div class="item-desc">Met basilicumolie.</div></div><div class="item-price">8,00</div></li>
-            <li><div><div class="item-name">Loaded zeezout crisps</div><div class="item-desc">Met tonijnsalsa.</div></div><div class="item-price">10,50</div></li>
-            <li><div><div class="item-name">Sushi to share</div><div class="item-desc">Of helemaal voor jezelf.</div></div><div class="item-price">10,50</div></li>
-          </ul>
+          {{ renderItems(menu.secties[4].items) }}
         </div>
 
         <div class="picknick-block">
@@ -550,149 +476,30 @@
             <path d="M30 6 L 42 26 L 30 26 Z" />
             <path d="M10 30 Q 30 33 50 30" />
           </svg>
-          <div class="picknick-title">Picknick op het water</div>
-          <div class="picknick-sub">Neem ons mee de plas op</div>
-          <div class="picknick-ing">Kaas · Charcuterie · Olijven · Nootjes<br/>Brood · 2 dips · Crudité</div>
-          <div class="picknick-price">35,00</div>
-          <div class="picknick-ing">Inclusief fles rosé, bubbels of bier</div>
-          <div class="picknick-price">50,00</div>
+          <div class="picknick-title">{{ menu.secties[6].titel }}</div>
+          <div class="picknick-sub">{{ menu.secties[6].ondertitel | replace("⛵", "") | trim }}</div>
+          {% for item in menu.secties[6].items %}
+            {% if item.beschrijving %}<div class="picknick-ing">{{ item.beschrijving | replace(".", "") }}</div>{% endif %}
+            <div class="picknick-price">{{ item.prijs }}</div>
+          {% endfor %}
         </div>
 
         <div class="catering-block">
           <img class="truck-illu" src="images/illu-truck.png" alt="JuKe Catering foodtruck" />
           <div class="brand-name">JUKE<br/>CATERING</div>
           <div class="brand-tag">Smaakvolle op maat gemaakte borrels en heerlijke maaltijden, thuis of op locatie!</div>
-          <div class="brand-mail">juke.catering@gmail.com</div>
+          <div class="brand-mail">{{ site.contact.email }}</div>
         </div>
       </div>
     </div>
   </section>
+  {% endmacro %}
 
-  <!-- ============================================
-       JUKE — VOORKANT (cream + pink + midnight)
-       ============================================ -->
-  <section class="card-page juke">
-    <header class="head-front">
-      <div class="head-title">
-        <img src="images/logo-pink-transparant.png" alt="JuKe Café logo" />
-        <div class="at">@ de uitkijk</div>
-      </div>
-      <img class="head-tray" src="images/illu-tray.png" alt="Wijnglazen op dienblad" />
-    </header>
-
-    <div class="grid-front">
-      <div>
-        <div class="section-box" data-label="VOOR BIJ DE KOFFIE">
-          <ul class="menu-list">
-            <li><div><div class="item-name">Opa's appelkruimel gebak</div><div class="item-desc">Naar het recept van de oude brood- en banketbakkerij Westveen uit Nieuwersluis.</div></div><div class="item-price">5,25</div></li>
-            <li><div><div class="item-name">Bananenbrood</div><div class="item-desc">Vers bereid.</div></div><div class="item-price">4,25</div></li>
-            <li><div><div class="item-name">Weekend special</div><div class="item-desc">Elk weekend een wisselende zoete verrassing afgestemd op het seizoen.</div></div><div class="item-price">5,25</div></li>
-          </ul>
-        </div>
-
-        <div class="section-box" data-label="BORRELPLANKEN">
-          <ul class="menu-list">
-            <li><div><div class="item-name">JuKe's borrelplank klassiek</div><div class="item-desc">Kaas, charcuterie, dips, olijven en brood.</div></div><div class="item-price">25,00</div></li>
-            <li><div><div class="item-name">JuKe's borrelplank deluxe</div><div class="item-desc">De heerlijke smaak van de klassieke borrelplank met luxere signature JuKe aanvullingen.</div></div><div class="item-price">32,50</div></li>
-          </ul>
-          <p class="allergen-note" style="text-align: left; font-size: 8pt; margin-top: 3mm;">* Planken uitbreiden? Kijk snel op de achterkant voor extra borrelhapjes!</p>
-        </div>
-      </div>
-
-      <div>
-        <div class="section-box" data-label="VERSE BROODJES" style="flex: 1;">
-          <ul class="menu-list">
-            <li><div><div class="item-name">Mortadella</div><div class="item-desc">Met burrata, perzik en crispy chili oil.</div></div><div class="item-price">12,50</div></li>
-            <li><div><div class="item-name">Carpaccio</div><div class="item-desc">Pesto, zongedroogde tomaatjes, rucola, rode ui, kappertjes, parmezaan en saladepitjes.</div></div><div class="item-price">12,50</div></li>
-            <li><div><div class="item-name">Tonijnsalade</div><div class="item-desc">Broodje met huisgemaakte tonijnsalade afgetopt met diverse garnituren.</div></div><div class="item-price">10,50</div></li>
-            <li><div><div class="item-name">Tosti brie <span class="vega"></span></div><div class="item-desc">Met gekarameliseerde ui, vijgenjam en saladegarnituur.</div></div><div class="item-price">9,50</div></li>
-            <li><div><div class="item-name">Flammkuchen à la JuKe <span class="vega"></span></div><div class="item-desc">Frisse tomaatjes, rucola, féta en verse kruiden.</div></div><div class="item-price">12,50</div></li>
-            <li><div><div class="item-name">Seizoenssalade</div><div class="item-desc">Heerlijke salade met seizoensproducten, vraag de bediening naar de special van de dag.</div></div><div class="item-price">11,50</div></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="psst-footer">
-      <div class="psst">"Psst… wist je al dat alles van onze menukaart ook afgehaald kan worden? Heerlijk voor op de boot, mee naar huis of lekker onderweg!"</div>
-      <div class="geniet">Geniet ervan!</div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       JUKE — ACHTERKANT
-       ============================================ -->
-  <section class="card-page juke">
-    <header class="head-back">
-      <h1>DELEN  =  GENIETEN</h1>
-    </header>
-
-    <div class="grid-back">
-      <div>
-        <div class="section-box" data-label="WARME HAPPEN">
-          <ul class="menu-list">
-            <li><div><div class="item-name">Rundvlees bitterballen <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
-            <li><div><div class="item-name">Kaasstengels <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
-            <li><div><div class="item-name">Gehaktballetjes in huisgemaakte tomatensaus <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
-            <li><div><div class="item-name">Camembert uit de oven</div><div class="item-desc">Met rozemarijn en dipcrackers.</div></div><div class="item-price">9,50</div></li>
-            <li><div><div class="item-name">Crispy bloemkool bites</div></div><div class="item-price">9,50</div></li>
-            <li><div><div class="item-name">Vega loaded nacho's</div><div class="item-desc">Met verse guacamole.</div></div><div class="item-price">11,50</div></li>
-          </ul>
-          <p class="allergen-note">Heeft u allergieën of dieetwensen? Laat het ons weten, dan kunnen wij er eventueel rekening mee houden.</p>
-        </div>
-
-        <div class="section-box" data-label="WIJNEN">
-          <div class="wijnen-list">
-            <div class="sub-cat">Wit:</div>
-            <div style="margin-bottom:2mm;"><div class="wine-name">Viognier Les Vignerons de Florensac</div><div class="wine-price">€ 4,95 — € 27,50</div></div>
-            <div style="margin-bottom:2mm;"><div class="wine-name">Chardonnay Les Vignerons de Florensac</div><div class="wine-price">€ 4,95 — € 27,50</div></div>
-            <div style="margin-bottom:2mm;"><div class="wine-name">Grüner Veltliner 'Lehm &amp; Löss' Weingut Julius Klein</div><div class="wine-price">€ 5,75 — € 32,50</div></div>
-            <div class="sub-cat">Rosé:</div>
-            <div style="margin-bottom:2mm;"><div class="wine-name">Instant Rosé Domaine les Charmettes</div><div class="wine-price">€ 4,95 — € 27,50</div></div>
-            <div class="sub-cat">Rood:</div>
-            <div style="margin-bottom:2mm;"><div class="wine-name">Primitivo Negroamaro Salento Bacca Nera, Casa Vinicola Botter</div><div class="wine-price">€ 4,95 — € 27,50</div></div>
-            <div class="sub-cat">Cava:</div>
-            <div><div class="wine-name">Brut Nature 'Mas Suau' Ferré i Catasús</div><div class="wine-price">€ 7,50 — € 37,50</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="section-box" data-label="KOUDE HAPPEN">
-          <ul class="menu-list">
-            <li><div><div class="item-name">Gemarineerde olijven &amp; nootjes</div></div><div class="item-price">5,50</div></li>
-            <li><div><div class="item-name">Brood met verse dips</div></div><div class="item-price">8,00</div></li>
-            <li><div><div class="item-name">Padron pepers</div></div><div class="item-price">8,00</div></li>
-            <li><div><div class="item-name">Tomatentartaar met burrata</div><div class="item-desc">Met basilicumolie.</div></div><div class="item-price">8,00</div></li>
-            <li><div><div class="item-name">Loaded zeezout crisps</div><div class="item-desc">Met tonijnsalsa.</div></div><div class="item-price">10,50</div></li>
-            <li><div><div class="item-name">Sushi to share</div><div class="item-desc">Of helemaal voor jezelf.</div></div><div class="item-price">10,50</div></li>
-          </ul>
-        </div>
-
-        <div class="picknick-block">
-          <svg class="picknick-icon" viewBox="0 0 60 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M30 4 L 30 26" />
-            <path d="M30 6 L 18 26 L 30 26 Z" />
-            <path d="M30 6 L 42 26 L 30 26 Z" />
-            <path d="M10 30 Q 30 33 50 30" />
-          </svg>
-          <div class="picknick-title">Picknick op het water</div>
-          <div class="picknick-sub">Neem ons mee de plas op</div>
-          <div class="picknick-ing">Kaas · Charcuterie · Olijven · Nootjes<br/>Brood · 2 dips · Crudité</div>
-          <div class="picknick-price">35,00</div>
-          <div class="picknick-ing">Inclusief fles rosé, bubbels of bier</div>
-          <div class="picknick-price">50,00</div>
-        </div>
-
-        <div class="catering-block">
-          <img class="truck-illu" src="images/illu-truck.png" alt="JuKe Catering foodtruck" />
-          <div class="brand-name">JUKE<br/>CATERING</div>
-          <div class="brand-tag">Smaakvolle op maat gemaakte borrels en heerlijke maaltijden, thuis of op locatie!</div>
-          <div class="brand-mail">juke.catering@gmail.com</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {# ─── De vier pagina's ─── #}
+  {{ renderFront("sage", "logo-donker.png") }}
+  {{ renderBack("sage") }}
+  {{ renderFront("juke", "logo-pink-transparant.png") }}
+  {{ renderBack("juke") }}
 
 </body>
 </html>

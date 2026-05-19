@@ -12,7 +12,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("logo-pakket");
   eleventyConfig.addPassthroughCopy("logo-pakket-juke.zip");
-  eleventyConfig.addPassthroughCopy("menukaart-print.html");
 
   // Prijzen netjes formatteren: "12,50" → "12,50", "12.5" → "12,50"
   eleventyConfig.addFilter("prijs", function (value) {

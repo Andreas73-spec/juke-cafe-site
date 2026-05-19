@@ -8,11 +8,63 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    /* Drijvende knoppen rechtsonder in het CMS */
+    .juke-quick-links {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .juke-quick-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.1rem;
+      background: #221638;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(34, 22, 56, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .juke-quick-links a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(34, 22, 56, 0.35);
+    }
+    .juke-quick-links a.pink { background: #C45E8E; }
+    .juke-quick-links svg { width: 16px; height: 16px; }
   </style>
   <!-- Netlify Identity widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <!-- Drijvende snelkoppelingen voor de eigenaar -->
+  <div class="juke-quick-links">
+    <a href="/menukaart-print.html" target="_blank" rel="noopener" class="pink" title="Open de print-versie van de menukaart in een nieuw tabblad">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      Print-menukaart openen
+    </a>
+    <a href="/" target="_blank" rel="noopener" title="Bekijk de live website">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+      Website bekijken
+    </a>
+  </div>
+
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>

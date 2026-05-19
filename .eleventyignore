@@ -11,4 +11,3 @@ logo-pakket 2
 
 # Deze worden alleen als statisch bestand gekopieerd (geen Nunjucks)
 admin/index.html
-menukaart-print.html
