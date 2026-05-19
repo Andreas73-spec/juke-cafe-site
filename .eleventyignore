@@ -1,0 +1,14 @@
+node_modules
+_site
+_backup-html
+README.md
+CMS-handleiding.md
+juke-cafe-site.zip
+logo-pakket-juke.zip
+logo-pakket
+logo-pakket 2
+.DS_Store
+
+# Deze worden alleen als statisch bestand gekopieerd (geen Nunjucks)
+admin/index.html
+menukaart-print.html

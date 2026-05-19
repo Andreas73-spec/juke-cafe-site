@@ -1,0 +1,41 @@
+{
+  "hero": {
+    "eyebrow": "Catering",
+    "titel": "JuKe op tafel,\nop het water,\nop locatie",
+    "lede": "Dit seizoen is JuKe @ De Uitkijk een feit. Daarnaast staan we ook op het water en op locatie — met dezelfde laid-back instelling en een keuken die meebeweegt met het seizoen."
+  },
+  "kaarten": [
+    {
+      "nummer": "01",
+      "eyebrow": "Bij De Uitkijk",
+      "titel": "JuKe Café aan het water",
+      "tekst": "Dit seizoen is JuKe @ De Uitkijk een feit. Geniet van goede koffie met vers gebak, een uitgebreide lunch in de zon en JuKe's signature borrelhappen met mooie wijnen.",
+      "foto": "/images/catering-cafe.jpg",
+      "foto_alt": "Gast op een zitzak met een wijntje en bitterballen, uitkijkend over de jachthaven bij gouden uur",
+      "tags": ["Koffie & gebak", "Lunch", "Borrelhappen", "Wijnen"]
+    },
+    {
+      "nummer": "02",
+      "eyebrow": "Op het water",
+      "titel": "Borrelplanken op de boot",
+      "tekst": "Met borrelplanken voor op het water. Stap aan boord, vaar de plassen op en geniet onderweg van al het lekkers van JuKe.",
+      "foto": "/images/catering-boot.jpg",
+      "foto_alt": "Uitgebreide borrelplank met vleeswaren, kaas, olijven en wijn op een sloep met de Nederlandse vlag bij gouden uur",
+      "tags": ["Borrelplanken", "Sloeproute", "Ophalen of geleverd", "Op maat"]
+    },
+    {
+      "nummer": "03",
+      "eyebrow": "Op locatie",
+      "titel": "Foodtruck & events",
+      "tekst": "Met onze foodtruck en hands-on mentaliteit zijn we ook inzetbaar voor events op locatie — van bedrijfsborrel en festival tot feest in de tuin.",
+      "foto": "/images/catering-foodtruck.jpg",
+      "foto_alt": "De mintgroene foodtruck van JuKe Catering met sfeerverlichting binnenin, in het groen met een alpaca op de voorgrond",
+      "tags": ["Foodtruck", "Bedrijfsborrel", "Festivals", "Privé-events"]
+    }
+  ],
+  "cta": {
+    "eyebrow": "Iets te vieren?",
+    "titel": "Vertel ons\nwat je in gedachten hebt",
+    "tekst": "Of het nu een verjaardag op de boot is, een lunch voor je team of een feest in de tuin — bel of mail Juke, dan denken we mee."
+  }
+}

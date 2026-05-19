@@ -1,0 +1,240 @@
+# Decap CMS configuratie voor JuKe Café
+# Werkt met Netlify Identity + Git Gateway (geen GitHub-account nodig voor de eigenaar)
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Foto-uploads gaan hier naartoe
+media_folder: "images"
+public_folder: "/images"
+
+# Nederlandse interface
+locale: 'nl'
+
+# Edit-modus zonder publicatie-stap (gewoon meteen live)
+publish_mode: simple
+
+# UI-aanpassingen
+site_url: https://jukecafe.nl
+display_url: https://jukecafe.nl
+logo_url: https://jukecafe.nl/images/logo-pink-transparant.png
+
+collections:
+  # ─────────────────────────────────────────────
+  # 1.  ALGEMENE SITE-INSTELLINGEN
+  # ─────────────────────────────────────────────
+  - name: "site"
+    label: "Site-instellingen"
+    description: "Heropening-balk, hero, openingstijden, contactgegevens — alles wat over de hele site terugkomt."
+    files:
+      - file: "_data/site.json"
+        label: "Site-instellingen"
+        name: "site"
+        fields:
+          - label: "Balk bovenaan (heropening / aankondiging)"
+            name: "topstrip"
+            widget: object
+            fields:
+              - { label: "Tekst", name: "tekst", widget: string, hint: "Bijv. 'Heropening 23 mei · 16:00 uur'" }
+              - { label: "Balk tonen?", name: "tonen", widget: boolean, default: true }
+
+          - label: "Hero (homepage)"
+            name: "hero"
+            widget: object
+            fields:
+              - { label: "Geschreven notitie boven titel", name: "note", widget: text, hint: "Gebruik een nieuwe regel voor een witregel" }
+              - { label: "Titel regel 1", name: "titel_regel1", widget: string }
+              - { label: "Titel regel 2", name: "titel_regel2", widget: string }
+              - { label: "Hero-foto", name: "foto", widget: image }
+              - { label: "Foto-omschrijving (alt-tekst)", name: "foto_alt", widget: string }
+
+          - label: "Statusregel onder hero (rijtje tags)"
+            name: "hero_status"
+            widget: list
+            field: { label: "Tag", name: "tag", widget: string }
+
+          - label: "Intro-blok 'Het café'"
+            name: "intro"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, default: "Het café" }
+              - { label: "Titel", name: "titel", widget: text, hint: "Nieuwe regel = nieuwe regel op de site" }
+              - { label: "Eerste alinea", name: "tekst_1", widget: text }
+              - { label: "Tweede alinea", name: "tekst_2", widget: text }
+              - { label: "Foto", name: "foto", widget: image }
+              - { label: "Foto-omschrijving", name: "foto_alt", widget: string }
+
+          - label: "Dagdelen-blok (ontbijt / lunch / borrel)"
+            name: "dagdelen"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string }
+              - { label: "Titel", name: "titel", widget: text }
+              - { label: "Intro-tekst", name: "intro", widget: text }
+              - label: "Kaarten"
+                name: "kaarten"
+                widget: list
+                fields:
+                  - { label: "Tijdstip", name: "tijd", widget: string }
+                  - { label: "Titel", name: "titel", widget: string }
+                  - { label: "Tekst", name: "tekst", widget: text }
+
+          - label: "Foto-rij 'Een dag bij Juke'"
+            name: "fotos_dag"
+            widget: list
+            fields:
+              - { label: "Foto", name: "foto", widget: image }
+              - { label: "Label (Ochtend, Middag…)", name: "label", widget: string }
+              - { label: "Foto-omschrijving", name: "alt", widget: string }
+
+          - label: "Blok 'Plan je bezoek'"
+            name: "bezoek"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string }
+              - { label: "Titel", name: "titel", widget: text }
+              - { label: "Tekst", name: "tekst", widget: text }
+
+          - label: "Openingstijden"
+            name: "openingstijden"
+            widget: list
+            fields:
+              - { label: "Dag", name: "dag", widget: string }
+              - { label: "Tijd", name: "tijd", widget: string, hint: "Bijv. '09:00 – 19:00' of 'Gesloten'" }
+              - { label: "Is gesloten?", name: "gesloten", widget: boolean, default: false }
+
+          - { label: "Tekst onder openingstijden", name: "openingstijden_noot", widget: text }
+
+          - label: "Contactgegevens"
+            name: "contact"
+            widget: object
+            fields:
+              - { label: "Telefoonnummer (zoals getoond)", name: "telefoon", widget: string }
+              - { label: "Telefoonnummer (voor klikbare link)", name: "telefoon_link", widget: string, hint: "Internationaal formaat zonder spaties, bijv. +31637347753" }
+              - { label: "E-mailadres", name: "email", widget: string }
+              - { label: "Instagram-naam", name: "instagram_naam", widget: string }
+              - { label: "Instagram-link", name: "instagram_url", widget: string }
+              - { label: "Adres regel 1 (straat + nummer)", name: "adres_regel1", widget: string }
+              - { label: "Adres regel 2 (postcode + plaats)", name: "adres_regel2", widget: string }
+              - { label: "Extra adresregel (bijv. 'bij jachthaven De Uitkijk')", name: "adres_extra", widget: string, required: false }
+              - { label: "KVK-nummer", name: "kvk", widget: string }
+
+          - label: "Parkeren"
+            name: "parkeren"
+            widget: object
+            fields:
+              - { label: "Regel 1", name: "regel1", widget: string }
+              - { label: "Regel 2", name: "regel2", widget: string }
+              - { label: "Link voorwaarden", name: "link", widget: string }
+
+          - { label: "Footer-tagline (kort zinnetje onderaan)", name: "footer_tag", widget: string }
+
+  # ─────────────────────────────────────────────
+  # 2.  MENUKAART
+  # ─────────────────────────────────────────────
+  - name: "menukaart"
+    label: "Menukaart"
+    description: "Alle gerechten, prijzen en secties van de menukaart."
+    files:
+      - file: "_data/menu.json"
+        label: "Menukaart"
+        name: "menu"
+        fields:
+          - label: "Bovenkant menukaart"
+            name: "hero"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, default: "Menukaart" }
+              - { label: "Titel", name: "titel", widget: text, hint: "Nieuwe regel = nieuwe regel op de site" }
+              - { label: "Korte introtekst", name: "lede", widget: text }
+
+          - label: "Secties van de menukaart"
+            name: "secties"
+            widget: list
+            summary: "{{fields.titel}}"
+            fields:
+              - { label: "Sectietitel", name: "titel", widget: string, hint: "Bijv. 'Verse broodjes'" }
+              - { label: "Ondertitel (optioneel)", name: "ondertitel", widget: string, required: false }
+              - { label: "Voettekst (optioneel)", name: "voettekst", widget: string, required: false, hint: "Tekst onder de items, bijv. 'Plank uitbreiden?'" }
+              - { label: "Extra CSS-klasse (laat leeg)", name: "klasse_extra", widget: string, required: false, hint: "Alleen invullen als de designer dit aangeeft" }
+
+              - label: "Items"
+                name: "items"
+                widget: list
+                required: false
+                summary: "{{fields.naam}} — € {{fields.prijs}}"
+                fields:
+                  - { label: "Naam gerecht", name: "naam", widget: string }
+                  - { label: "Beschrijving", name: "beschrijving", widget: text, required: false }
+                  - { label: "Prijs (zonder €)", name: "prijs", widget: string, hint: "Bijv. '12,50'" }
+                  - { label: "Vegetarisch?", name: "vega", widget: boolean, default: false, required: false }
+
+              - label: "Subsecties (alleen voor wijnen e.d.)"
+                name: "subsecties"
+                widget: list
+                required: false
+                summary: "{{fields.titel}}"
+                fields:
+                  - { label: "Subsectietitel (Wit, Rood…)", name: "titel", widget: string }
+                  - label: "Items"
+                    name: "items"
+                    widget: list
+                    summary: "{{fields.naam}} — € {{fields.prijs}}"
+                    fields:
+                      - { label: "Naam", name: "naam", widget: string }
+                      - { label: "Beschrijving", name: "beschrijving", widget: text, required: false }
+                      - { label: "Prijs (bijv. '4,95 — 27,50')", name: "prijs", widget: string }
+
+          - label: "Voetnoot: takeaway-zinnetje"
+            name: "voetnoot_takeaway"
+            widget: object
+            fields:
+              - { label: "Tekst vooraan", name: "voetnoot_takeaway_intro", widget: string }
+              - { label: "Tekst die dik moet (bold)", name: "voetnoot_takeaway_bold", widget: string }
+              - { label: "Tekst achteraan", name: "voetnoot_takeaway_outro", widget: text }
+
+          - { label: "Algemene voetnoot (prijzen incl. btw)", name: "voetnoot_algemeen", widget: string }
+
+  # ─────────────────────────────────────────────
+  # 3.  CATERING-PAGINA
+  # ─────────────────────────────────────────────
+  - name: "catering"
+    label: "Catering-pagina"
+    description: "De drie cateringkaarten + contactblok."
+    files:
+      - file: "_data/catering.json"
+        label: "Catering"
+        name: "catering"
+        fields:
+          - label: "Bovenkant pagina"
+            name: "hero"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, default: "Catering" }
+              - { label: "Titel", name: "titel", widget: text }
+              - { label: "Korte introtekst", name: "lede", widget: text }
+
+          - label: "Cateringkaarten"
+            name: "kaarten"
+            widget: list
+            summary: "{{fields.nummer}} — {{fields.titel}}"
+            fields:
+              - { label: "Volgnummer (01, 02, 03…)", name: "nummer", widget: string }
+              - { label: "Eyebrow", name: "eyebrow", widget: string }
+              - { label: "Titel", name: "titel", widget: text }
+              - { label: "Tekst", name: "tekst", widget: text }
+              - { label: "Foto", name: "foto", widget: image }
+              - { label: "Foto-omschrijving", name: "foto_alt", widget: string }
+              - label: "Tags"
+                name: "tags"
+                widget: list
+                field: { label: "Tag", name: "tag", widget: string }
+
+          - label: "Onderaan: 'Iets te vieren?' blok"
+            name: "cta"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string }
+              - { label: "Titel", name: "titel", widget: text }
+              - { label: "Tekst", name: "tekst", widget: text }

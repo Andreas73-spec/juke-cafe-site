@@ -1,0 +1,103 @@
+---
+permalink: /menu.html
+---
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menukaart · JuKe Café · Loosdrecht</title>
+  <meta name="description" content="De menukaart van JuKe Café bij De Uitkijk Loosdrecht. Koffie, lunch, borrelhapjes en wijn — vers van het seizoen, met uitzicht op de Loosdrechtse Plassen." />
+  <meta name="theme-color" content="#221638" />
+  <link rel="canonical" href="https://jukecafe.nl/menu.html" />
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:site_name" content="JuKe Café" />
+  <meta property="og:title" content="Menukaart · JuKe Café · Loosdrecht" />
+  <meta property="og:description" content="Koffie, lunch, borrelhapjes en wijn — vers van het seizoen, met uitzicht op de Loosdrechtse Plassen." />
+  <meta property="og:url" content="https://jukecafe.nl/menu.html" />
+  <meta property="og:image" content="https://jukecafe.nl/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Menukaart · JuKe Café" />
+  <meta name="twitter:description" content="Koffie, lunch, borrelhapjes en wijn met uitzicht op de Loosdrechtse Plassen." />
+  <meta name="twitter:image" content="https://jukecafe.nl/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=menu5" />
+</head>
+<body class="page-menu">
+  {% set topstripLink = "index.html" %}
+  {% set topstripLinkLabel = "Terug naar home" %}
+  {% include "topstrip.njk" %}
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="JuKe Café">
+      <img class="brand-mark" src="images/logo-pink-transparant.png" alt="JuKe Café · bij De Uitkijk Loosdrecht" />
+    </a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="primary-nav" class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="menu.html" aria-current="page">Menukaart</a>
+      <a href="catering.html">Catering</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="menu-hero">
+    <p class="eyebrow">{{ menu.hero.eyebrow }}</p>
+    <h1>{{ menu.hero.titel | replace("\n", "<br/>") | safe }}</h1>
+    <p class="lede">{{ menu.hero.lede }}</p>
+  </section>
+
+  <main class="menu-main">
+    {% for sectie in menu.secties %}
+    <section class="menu-section{% if sectie.klasse_extra %} {{ sectie.klasse_extra }}{% endif %}">
+      <header class="menu-section-head">
+        <h2>{{ sectie.titel }}</h2>
+        {% if sectie.ondertitel %}<p>{{ sectie.ondertitel }}</p>{% endif %}
+      </header>
+
+      {% if sectie.subsecties %}
+        {% for sub in sectie.subsecties %}
+        <h3 class="menu-sub">{{ sub.titel }}</h3>
+        <ul class="menu-list">
+          {% for item in sub.items %}{% include "menu-item.njk" %}{% endfor %}
+        </ul>
+        {% endfor %}
+      {% else %}
+        <ul class="menu-list">
+          {% for item in sectie.items %}{% include "menu-item.njk" %}{% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if sectie.voettekst %}<p class="menu-desc menu-section-note">{{ sectie.voettekst }}</p>{% endif %}
+    </section>
+    {% endfor %}
+
+    <p class="menu-foot menu-takeaway">
+      {{ menu.voetnoot_takeaway_intro }}<strong>{{ menu.voetnoot_takeaway_bold }}</strong>{{ menu.voetnoot_takeaway_outro }}
+    </p>
+    <p class="menu-foot">
+      {{ menu.voetnoot_algemeen }}
+      <span class="menu-vega" aria-hidden="true">vega</span> = vegetarisch.
+    </p>
+  </main>
+
+  {% include "footer.njk" %}
+  {% include "scripts.njk" %}
+</body>
+</html>

@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menukaart voor op tafel · JuKe Café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+
+    :root {
+      --sage:        #C5CCA5;
+      --sage-ink:    #1F2618;
+
+      --bg-juke:     #F8F5EE;
+      --ink-juke:    #221638;
+      --accent-juke: #C45E8E;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      background: #ece3d0;
+    }
+
+    .screen-intro {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 1.5rem 2rem;
+      background: #fffbef;
+      border: 1px dashed #c0a050;
+      border-radius: 8px;
+    }
+    .screen-intro h1 { margin: 0 0 0.5rem; font-size: 1.4rem; }
+    .screen-intro p { margin: 0.3rem 0; line-height: 1.5; }
+    .screen-intro button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.4rem;
+      background: #3D2A1B;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .card-page {
+      width: 210mm;
+      height: 297mm;
+      padding: 13mm 12mm;
+      page-break-after: always;
+      page-break-inside: avoid;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto 20mm;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .card-page:last-child { page-break-after: auto; }
+
+    .sage  { background: var(--sage); color: var(--sage-ink); }
+    .juke  { background: var(--bg-juke); color: var(--ink-juke); }
+
+    /* === HEADER (front) === */
+    .head-front {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 8mm;
+      padding-bottom: 6mm;
+      border-bottom: 0.5pt solid currentColor;
+      margin-bottom: 6mm;
+    }
+    .head-title {
+      text-align: center;
+    }
+    .head-title img {
+      display: block;
+      width: 46mm;
+      height: 46mm;
+      object-fit: contain;
+      margin: 0 auto 1mm;
+    }
+    .head-title .at {
+      font-family: "Sacramento", cursive;
+      font-size: 18pt;
+      line-height: 1;
+      margin-top: 1mm;
+    }
+    .juke .head-title .at { color: var(--ink-juke); }
+    .head-tray {
+      width: 50mm;
+      height: 36mm;
+      justify-self: end;
+    }
+
+    /* === HEADER (back) === */
+    .head-back {
+      text-align: center;
+      padding-bottom: 6mm;
+      margin-bottom: 6mm;
+      border-bottom: 0.5pt solid currentColor;
+    }
+    .head-back h1 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-weight: 600;
+      font-size: 22pt;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .juke .head-back h1 { color: var(--accent-juke); }
+
+    /* === SECTION BOX with vertical label === */
+    .section-box {
+      border: 0.5pt solid currentColor;
+      padding: 5mm 5mm 5mm 13mm;
+      margin-bottom: 4mm;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .section-box .menu-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .section-box[data-label]::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 3mm;
+      top: 5mm;
+      bottom: 5mm;
+      writing-mode: sideways-lr;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      white-space: nowrap;
+    }
+    .juke .section-box[data-label]::before { color: var(--accent-juke); }
+
+    /* === ITEMS === */
+    .menu-list { list-style: none; padding: 0; margin: 0; }
+    .menu-list li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4mm;
+      align-items: baseline;
+      padding: 1.5mm 0;
+    }
+    .item-name {
+      font-weight: 700;
+      font-size: 9.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .item-desc {
+      font-size: 8.5pt;
+      font-weight: 400;
+      line-height: 1.35;
+      margin-top: 0.5mm;
+      text-transform: none;
+      letter-spacing: 0;
+      opacity: 0.85;
+    }
+    .item-price {
+      font-weight: 600;
+      font-size: 9.5pt;
+      white-space: nowrap;
+    }
+    .item-price::before { content: "€ "; }
+
+    .vega {
+      display: inline-block;
+      width: 8pt;
+      height: 8pt;
+      border: 0.7pt solid currentColor;
+      border-radius: 50%;
+      vertical-align: 1pt;
+      margin-left: 1.5mm;
+      position: relative;
+    }
+    .vega::after {
+      content: "v";
+      font-size: 6pt;
+      font-style: italic;
+      font-weight: 700;
+      position: absolute;
+      top: -1.5pt;
+      left: 0;
+      right: 0;
+      text-align: center;
+      line-height: 8pt;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .allergen-note {
+      font-size: 8.5pt;
+      font-style: italic;
+      line-height: 1.45;
+      margin: 4mm 0 0;
+      text-align: center;
+      opacity: 0.85;
+    }
+
+    /* === FRONT grid === */
+    .grid-front {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+    }
+    .grid-front > div { display: flex; flex-direction: column; gap: 4mm; }
+    .grid-front > div > .section-box {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    /* === BACK grid === */
+    .grid-back {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+    }
+    .grid-back > div { display: flex; flex-direction: column; gap: 4mm; }
+    .grid-back > div > .section-box {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    /* === Wijnen block (sub categories) === */
+    .wijnen-list .sub-cat {
+      font-weight: 700;
+      font-size: 9pt;
+      margin-top: 2mm;
+      margin-bottom: 1mm;
+    }
+    .wijnen-list .sub-cat:first-child { margin-top: 0; }
+    .wijnen-list .wine-name {
+      font-size: 8.5pt;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    .wijnen-list .wine-price {
+      font-size: 8.5pt;
+      font-weight: 500;
+    }
+
+    /* === PSST footer === */
+    .psst-footer {
+      margin-top: 4mm;
+      padding: 5mm;
+      text-align: center;
+      border: 0.5pt solid currentColor;
+    }
+    .psst-footer .psst {
+      font-size: 9.5pt;
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 2mm;
+    }
+    .psst-footer .geniet {
+      font-size: 9.5pt;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    /* === Picknick block === */
+    .picknick-block {
+      border: 0.5pt solid currentColor;
+      padding: 5mm;
+      text-align: center;
+      position: relative;
+    }
+    .picknick-block .picknick-icon {
+      position: absolute;
+      top: 4mm;
+      right: 4mm;
+      width: 16mm;
+      height: 10mm;
+    }
+    .picknick-block .picknick-title {
+      font-weight: 700;
+      font-size: 10pt;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin: 0 0 2mm;
+    }
+    .picknick-block .picknick-sub {
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 3mm;
+    }
+    .picknick-ing {
+      font-size: 8pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1.55;
+      margin-bottom: 1.5mm;
+    }
+    .picknick-price {
+      font-weight: 700;
+      font-size: 10pt;
+      margin-bottom: 3mm;
+    }
+    .picknick-price::before { content: "€ "; }
+
+    /* === Catering block === */
+    .catering-block {
+      border: 0.5pt solid currentColor;
+      padding: 6mm 5mm;
+      text-align: center;
+      position: relative;
+    }
+    .truck-illu {
+      display: block;
+      margin: 0 auto 3mm;
+      width: 56mm;
+      height: 40mm;
+    }
+    .catering-block .brand-name {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-weight: 600;
+      font-size: 20pt;
+      letter-spacing: 0.08em;
+      line-height: 1.05;
+    }
+    .catering-block .brand-tag {
+      font-size: 8pt;
+      line-height: 1.5;
+      margin-top: 3mm;
+      opacity: 0.9;
+    }
+    .catering-block .brand-mail {
+      margin-top: 3mm;
+      font-size: 8.5pt;
+    }
+    .catering-block .brand-mail::before {
+      content: "✉ ";
+    }
+
+    @media print {
+      .screen-intro { display: none; }
+      body { background: white; }
+      .card-page { box-shadow: none; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="screen-intro">
+    <h1>📋 Menukaart voor op tafel</h1>
+    <p>Dubbelzijdige A4 menukaart in twee kleurvarianten:</p>
+    <ul>
+      <li><strong>Sage groen</strong> — getrouw aan het originele ontwerp, met donker logo</li>
+      <li><strong>JuKe</strong> — in de kleuren van de website, met midnight + pink logo</li>
+    </ul>
+    <p><strong>Tip:</strong> klik om te printen of als PDF te bewaren. Print dubbelzijdig op A4 portrait.</p>
+    <button onclick="window.print()">🖨️ Print of bewaar als PDF</button>
+  </div>
+
+  <!-- ============================================
+       SAGE — VOORKANT
+       ============================================ -->
+  <section class="card-page sage">
+    <header class="head-front">
+      <div class="head-title">
+        <img src="images/logo-donker.png" alt="JuKe Café logo" />
+        <div class="at">@ de uitkijk</div>
+      </div>
+      <img class="head-tray" src="images/illu-tray.png" alt="Wijnglazen op dienblad" />
+    </header>
+
+    <div class="grid-front">
+      <!-- Left: Voor bij de koffie + Borrelplanken -->
+      <div>
+        <div class="section-box" data-label="VOOR BIJ DE KOFFIE">
+          <ul class="menu-list">
+            <li>
+              <div><div class="item-name">Opa's appelkruimel gebak</div>
+                <div class="item-desc">Naar het recept van de oude brood- en banketbakkerij Westveen uit Nieuwersluis.</div></div>
+              <div class="item-price">5,25</div>
+            </li>
+            <li>
+              <div><div class="item-name">Bananenbrood</div>
+                <div class="item-desc">Vers bereid.</div></div>
+              <div class="item-price">4,25</div>
+            </li>
+            <li>
+              <div><div class="item-name">Weekend special</div>
+                <div class="item-desc">Elk weekend een wisselende zoete verrassing afgestemd op het seizoen.</div></div>
+              <div class="item-price">5,25</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-box" data-label="BORRELPLANKEN">
+          <ul class="menu-list">
+            <li>
+              <div><div class="item-name">JuKe's borrelplank klassiek</div>
+                <div class="item-desc">Kaas, charcuterie, dips, olijven en brood.</div></div>
+              <div class="item-price">25,00</div>
+            </li>
+            <li>
+              <div><div class="item-name">JuKe's borrelplank deluxe</div>
+                <div class="item-desc">De heerlijke smaak van de klassieke borrelplank met luxere signature JuKe aanvullingen.</div></div>
+              <div class="item-price">32,50</div>
+            </li>
+          </ul>
+          <p class="allergen-note" style="text-align: left; font-size: 8pt; margin-top: 3mm;">* Planken uitbreiden? Kijk snel op de achterkant voor extra borrelhapjes!</p>
+        </div>
+      </div>
+
+      <!-- Right: Verse broodjes -->
+      <div>
+        <div class="section-box" data-label="VERSE BROODJES" style="flex: 1;">
+          <ul class="menu-list">
+            <li>
+              <div><div class="item-name">Mortadella</div>
+                <div class="item-desc">Met burrata, perzik en crispy chili oil.</div></div>
+              <div class="item-price">12,50</div>
+            </li>
+            <li>
+              <div><div class="item-name">Carpaccio</div>
+                <div class="item-desc">Pesto, zongedroogde tomaatjes, rucola, rode ui, kappertjes, parmezaan en saladepitjes.</div></div>
+              <div class="item-price">12,50</div>
+            </li>
+            <li>
+              <div><div class="item-name">Tonijnsalade</div>
+                <div class="item-desc">Broodje met huisgemaakte tonijnsalade afgetopt met diverse garnituren.</div></div>
+              <div class="item-price">10,50</div>
+            </li>
+            <li>
+              <div><div class="item-name">Tosti brie <span class="vega"></span></div>
+                <div class="item-desc">Met gekarameliseerde ui, vijgenjam en saladegarnituur.</div></div>
+              <div class="item-price">9,50</div>
+            </li>
+            <li>
+              <div><div class="item-name">Flammkuchen à la JuKe <span class="vega"></span></div>
+                <div class="item-desc">Frisse tomaatjes, rucola, féta en verse kruiden.</div></div>
+              <div class="item-price">12,50</div>
+            </li>
+            <li>
+              <div><div class="item-name">Seizoenssalade</div>
+                <div class="item-desc">Heerlijke salade met seizoensproducten, vraag de bediening naar de special van de dag.</div></div>
+              <div class="item-price">11,50</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="psst-footer">
+      <div class="psst">"Psst… wist je al dat alles van onze menukaart ook afgehaald kan worden? Heerlijk voor op de boot, mee naar huis of lekker onderweg!"</div>
+      <div class="geniet">Geniet ervan!</div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SAGE — ACHTERKANT
+       ============================================ -->
+  <section class="card-page sage">
+    <header class="head-back">
+      <h1>DELEN  =  GENIETEN</h1>
+    </header>
+
+    <div class="grid-back">
+      <div>
+        <div class="section-box" data-label="WARME HAPPEN">
+          <ul class="menu-list">
+            <li><div><div class="item-name">Rundvlees bitterballen <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
+            <li><div><div class="item-name">Kaasstengels <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
+            <li><div><div class="item-name">Gehaktballetjes in huisgemaakte tomatensaus <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
+            <li><div><div class="item-name">Camembert uit de oven</div><div class="item-desc">Met rozemarijn en dipcrackers.</div></div><div class="item-price">9,50</div></li>
+            <li><div><div class="item-name">Crispy bloemkool bites</div></div><div class="item-price">9,50</div></li>
+            <li><div><div class="item-name">Vega loaded nacho's</div><div class="item-desc">Met verse guacamole.</div></div><div class="item-price">11,50</div></li>
+          </ul>
+          <p class="allergen-note">Heeft u allergieën of dieetwensen? Laat het ons weten, dan kunnen wij er eventueel rekening mee houden.</p>
+        </div>
+
+        <div class="section-box" data-label="WIJNEN">
+          <div class="wijnen-list">
+            <div class="sub-cat">Wit:</div>
+            <div style="margin-bottom:2mm;">
+              <div class="wine-name">Viognier Les Vignerons de Florensac</div>
+              <div class="wine-price">€ 4,95 — € 27,50</div>
+            </div>
+            <div style="margin-bottom:2mm;">
+              <div class="wine-name">Chardonnay Les Vignerons de Florensac</div>
+              <div class="wine-price">€ 4,95 — € 27,50</div>
+            </div>
+            <div style="margin-bottom:2mm;">
+              <div class="wine-name">Grüner Veltliner 'Lehm &amp; Löss' Weingut Julius Klein</div>
+              <div class="wine-price">€ 5,75 — € 32,50</div>
+            </div>
+
+            <div class="sub-cat">Rosé:</div>
+            <div style="margin-bottom:2mm;">
+              <div class="wine-name">Instant Rosé Domaine les Charmettes</div>
+              <div class="wine-price">€ 4,95 — € 27,50</div>
+            </div>
+
+            <div class="sub-cat">Rood:</div>
+            <div style="margin-bottom:2mm;">
+              <div class="wine-name">Primitivo Negroamaro Salento Bacca Nera, Casa Vinicola Botter</div>
+              <div class="wine-price">€ 4,95 — € 27,50</div>
+            </div>
+
+            <div class="sub-cat">Cava:</div>
+            <div>
+              <div class="wine-name">Brut Nature 'Mas Suau' Ferré i Catasús</div>
+              <div class="wine-price">€ 7,50 — € 37,50</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-box" data-label="KOUDE HAPPEN">
+          <ul class="menu-list">
+            <li><div><div class="item-name">Gemarineerde olijven &amp; nootjes</div></div><div class="item-price">5,50</div></li>
+            <li><div><div class="item-name">Brood met verse dips</div></div><div class="item-price">8,00</div></li>
+            <li><div><div class="item-name">Padron pepers</div></div><div class="item-price">8,00</div></li>
+            <li><div><div class="item-name">Tomatentartaar met burrata</div><div class="item-desc">Met basilicumolie.</div></div><div class="item-price">8,00</div></li>
+            <li><div><div class="item-name">Loaded zeezout crisps</div><div class="item-desc">Met tonijnsalsa.</div></div><div class="item-price">10,50</div></li>
+            <li><div><div class="item-name">Sushi to share</div><div class="item-desc">Of helemaal voor jezelf.</div></div><div class="item-price">10,50</div></li>
+          </ul>
+        </div>
+
+        <div class="picknick-block">
+          <svg class="picknick-icon" viewBox="0 0 60 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 4 L 30 26" />
+            <path d="M30 6 L 18 26 L 30 26 Z" />
+            <path d="M30 6 L 42 26 L 30 26 Z" />
+            <path d="M10 30 Q 30 33 50 30" />
+          </svg>
+          <div class="picknick-title">Picknick op het water</div>
+          <div class="picknick-sub">Neem ons mee de plas op</div>
+          <div class="picknick-ing">Kaas · Charcuterie · Olijven · Nootjes<br/>Brood · 2 dips · Crudité</div>
+          <div class="picknick-price">35,00</div>
+          <div class="picknick-ing">Inclusief fles rosé, bubbels of bier</div>
+          <div class="picknick-price">50,00</div>
+        </div>
+
+        <div class="catering-block">
+          <img class="truck-illu" src="images/illu-truck.png" alt="JuKe Catering foodtruck" />
+          <div class="brand-name">JUKE<br/>CATERING</div>
+          <div class="brand-tag">Smaakvolle op maat gemaakte borrels en heerlijke maaltijden, thuis of op locatie!</div>
+          <div class="brand-mail">juke.catering@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       JUKE — VOORKANT (cream + pink + midnight)
+       ============================================ -->
+  <section class="card-page juke">
+    <header class="head-front">
+      <div class="head-title">
+        <img src="images/logo-pink-transparant.png" alt="JuKe Café logo" />
+        <div class="at">@ de uitkijk</div>
+      </div>
+      <img class="head-tray" src="images/illu-tray.png" alt="Wijnglazen op dienblad" />
+    </header>
+
+    <div class="grid-front">
+      <div>
+        <div class="section-box" data-label="VOOR BIJ DE KOFFIE">
+          <ul class="menu-list">
+            <li><div><div class="item-name">Opa's appelkruimel gebak</div><div class="item-desc">Naar het recept van de oude brood- en banketbakkerij Westveen uit Nieuwersluis.</div></div><div class="item-price">5,25</div></li>
+            <li><div><div class="item-name">Bananenbrood</div><div class="item-desc">Vers bereid.</div></div><div class="item-price">4,25</div></li>
+            <li><div><div class="item-name">Weekend special</div><div class="item-desc">Elk weekend een wisselende zoete verrassing afgestemd op het seizoen.</div></div><div class="item-price">5,25</div></li>
+          </ul>
+        </div>
+
+        <div class="section-box" data-label="BORRELPLANKEN">
+          <ul class="menu-list">
+            <li><div><div class="item-name">JuKe's borrelplank klassiek</div><div class="item-desc">Kaas, charcuterie, dips, olijven en brood.</div></div><div class="item-price">25,00</div></li>
+            <li><div><div class="item-name">JuKe's borrelplank deluxe</div><div class="item-desc">De heerlijke smaak van de klassieke borrelplank met luxere signature JuKe aanvullingen.</div></div><div class="item-price">32,50</div></li>
+          </ul>
+          <p class="allergen-note" style="text-align: left; font-size: 8pt; margin-top: 3mm;">* Planken uitbreiden? Kijk snel op de achterkant voor extra borrelhapjes!</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-box" data-label="VERSE BROODJES" style="flex: 1;">
+          <ul class="menu-list">
+            <li><div><div class="item-name">Mortadella</div><div class="item-desc">Met burrata, perzik en crispy chili oil.</div></div><div class="item-price">12,50</div></li>
+            <li><div><div class="item-name">Carpaccio</div><div class="item-desc">Pesto, zongedroogde tomaatjes, rucola, rode ui, kappertjes, parmezaan en saladepitjes.</div></div><div class="item-price">12,50</div></li>
+            <li><div><div class="item-name">Tonijnsalade</div><div class="item-desc">Broodje met huisgemaakte tonijnsalade afgetopt met diverse garnituren.</div></div><div class="item-price">10,50</div></li>
+            <li><div><div class="item-name">Tosti brie <span class="vega"></span></div><div class="item-desc">Met gekarameliseerde ui, vijgenjam en saladegarnituur.</div></div><div class="item-price">9,50</div></li>
+            <li><div><div class="item-name">Flammkuchen à la JuKe <span class="vega"></span></div><div class="item-desc">Frisse tomaatjes, rucola, féta en verse kruiden.</div></div><div class="item-price">12,50</div></li>
+            <li><div><div class="item-name">Seizoenssalade</div><div class="item-desc">Heerlijke salade met seizoensproducten, vraag de bediening naar de special van de dag.</div></div><div class="item-price">11,50</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="psst-footer">
+      <div class="psst">"Psst… wist je al dat alles van onze menukaart ook afgehaald kan worden? Heerlijk voor op de boot, mee naar huis of lekker onderweg!"</div>
+      <div class="geniet">Geniet ervan!</div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       JUKE — ACHTERKANT
+       ============================================ -->
+  <section class="card-page juke">
+    <header class="head-back">
+      <h1>DELEN  =  GENIETEN</h1>
+    </header>
+
+    <div class="grid-back">
+      <div>
+        <div class="section-box" data-label="WARME HAPPEN">
+          <ul class="menu-list">
+            <li><div><div class="item-name">Rundvlees bitterballen <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
+            <li><div><div class="item-name">Kaasstengels <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
+            <li><div><div class="item-name">Gehaktballetjes in huisgemaakte tomatensaus <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:8pt;opacity:.7;">8 stk.</span></div></div><div class="item-price">8,50</div></li>
+            <li><div><div class="item-name">Camembert uit de oven</div><div class="item-desc">Met rozemarijn en dipcrackers.</div></div><div class="item-price">9,50</div></li>
+            <li><div><div class="item-name">Crispy bloemkool bites</div></div><div class="item-price">9,50</div></li>
+            <li><div><div class="item-name">Vega loaded nacho's</div><div class="item-desc">Met verse guacamole.</div></div><div class="item-price">11,50</div></li>
+          </ul>
+          <p class="allergen-note">Heeft u allergieën of dieetwensen? Laat het ons weten, dan kunnen wij er eventueel rekening mee houden.</p>
+        </div>
+
+        <div class="section-box" data-label="WIJNEN">
+          <div class="wijnen-list">
+            <div class="sub-cat">Wit:</div>
+            <div style="margin-bottom:2mm;"><div class="wine-name">Viognier Les Vignerons de Florensac</div><div class="wine-price">€ 4,95 — € 27,50</div></div>
+            <div style="margin-bottom:2mm;"><div class="wine-name">Chardonnay Les Vignerons de Florensac</div><div class="wine-price">€ 4,95 — € 27,50</div></div>
+            <div style="margin-bottom:2mm;"><div class="wine-name">Grüner Veltliner 'Lehm &amp; Löss' Weingut Julius Klein</div><div class="wine-price">€ 5,75 — € 32,50</div></div>
+            <div class="sub-cat">Rosé:</div>
+            <div style="margin-bottom:2mm;"><div class="wine-name">Instant Rosé Domaine les Charmettes</div><div class="wine-price">€ 4,95 — € 27,50</div></div>
+            <div class="sub-cat">Rood:</div>
+            <div style="margin-bottom:2mm;"><div class="wine-name">Primitivo Negroamaro Salento Bacca Nera, Casa Vinicola Botter</div><div class="wine-price">€ 4,95 — € 27,50</div></div>
+            <div class="sub-cat">Cava:</div>
+            <div><div class="wine-name">Brut Nature 'Mas Suau' Ferré i Catasús</div><div class="wine-price">€ 7,50 — € 37,50</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-box" data-label="KOUDE HAPPEN">
+          <ul class="menu-list">
+            <li><div><div class="item-name">Gemarineerde olijven &amp; nootjes</div></div><div class="item-price">5,50</div></li>
+            <li><div><div class="item-name">Brood met verse dips</div></div><div class="item-price">8,00</div></li>
+            <li><div><div class="item-name">Padron pepers</div></div><div class="item-price">8,00</div></li>
+            <li><div><div class="item-name">Tomatentartaar met burrata</div><div class="item-desc">Met basilicumolie.</div></div><div class="item-price">8,00</div></li>
+            <li><div><div class="item-name">Loaded zeezout crisps</div><div class="item-desc">Met tonijnsalsa.</div></div><div class="item-price">10,50</div></li>
+            <li><div><div class="item-name">Sushi to share</div><div class="item-desc">Of helemaal voor jezelf.</div></div><div class="item-price">10,50</div></li>
+          </ul>
+        </div>
+
+        <div class="picknick-block">
+          <svg class="picknick-icon" viewBox="0 0 60 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 4 L 30 26" />
+            <path d="M30 6 L 18 26 L 30 26 Z" />
+            <path d="M30 6 L 42 26 L 30 26 Z" />
+            <path d="M10 30 Q 30 33 50 30" />
+          </svg>
+          <div class="picknick-title">Picknick op het water</div>
+          <div class="picknick-sub">Neem ons mee de plas op</div>
+          <div class="picknick-ing">Kaas · Charcuterie · Olijven · Nootjes<br/>Brood · 2 dips · Crudité</div>
+          <div class="picknick-price">35,00</div>
+          <div class="picknick-ing">Inclusief fles rosé, bubbels of bier</div>
+          <div class="picknick-price">50,00</div>
+        </div>
+
+        <div class="catering-block">
+          <img class="truck-illu" src="images/illu-truck.png" alt="JuKe Catering foodtruck" />
+          <div class="brand-name">JUKE<br/>CATERING</div>
+          <div class="brand-tag">Smaakvolle op maat gemaakte borrels en heerlijke maaltijden, thuis of op locatie!</div>
+          <div class="brand-mail">juke.catering@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+{% if site.topstrip.tonen %}
+<div class="top-strip">
+  <span>{{ site.topstrip.tekst }}</span>
+  <span class="sep">·</span>
+  <a href="{{ topstripLink | default('menu.html') }}">{{ topstripLinkLabel | default('Bekijk de menukaart') }}</a>
+</div>
+{% endif %}

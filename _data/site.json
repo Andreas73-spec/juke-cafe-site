@@ -1,0 +1,87 @@
+{
+  "topstrip": {
+    "tekst": "Heropening 23 mei · 16:00 uur",
+    "tonen": true
+  },
+  "hero": {
+    "note": "ploft neer bij Juke café\naan het water bij De Uitkijk.",
+    "titel_regel1": "Eten, drinken",
+    "titel_regel2": "en uitkijken",
+    "foto": "/images/hero-terras.jpg",
+    "foto_alt": "Twee wijnglazen op een rond tafeltje aan het water bij Juke, met een bos bloemen en een wijnkoeler, en de jachten in de haven op de achtergrond."
+  },
+  "hero_status": [
+    "Koffie & gebak",
+    "Lunch in de zon",
+    "Borrelhapjes & wijn",
+    "Vrij — Zon · 09:00 – 19:00"
+  ],
+  "intro": {
+    "eyebrow": "Het café",
+    "titel": "Juke aan\nhet water",
+    "tekst_1": "Na een grondige verbouwing heropent het café van De Uitkijk haar deuren — voortaan onder de naam JuKe, gerund door JuKe Catering. Een vertrouwde plek in een nieuw jasje, met dezelfde adem van de haven en een keuken die meedrijft met het seizoen.",
+    "tekst_2": "Loop binnen voor een espresso bij zonsopgang, een uitgebreide lunch op het terras, of een lange avond met borrel, wijn en gerechten uit eigen keuken.",
+    "foto": "/images/borrel-water.jpg",
+    "foto_alt": "Borrelplanken met oesters, salade, bitterballen, Aperol en zonnebloemen op een houten tafel aan het water bij JuKe Café."
+  },
+  "dagdelen": {
+    "eyebrow": "Wat je bij ons vindt",
+    "titel": "De hele dag\naan boord welkom",
+    "intro": "Van de eerste koffie tot het laatste glas — bij Juke ben je niet aan een tijdstip gebonden.",
+    "kaarten": [
+      {
+        "tijd": "09 — 12 uur",
+        "titel": "Ontbijt & koffie",
+        "tekst": "Versgebakken broodjes, eitjes naar wens en een sterke bak koffie. Bij mooi weer op het terras, anders binnen bij het raam."
+      },
+      {
+        "tijd": "12 — 16 uur",
+        "titel": "Lunch met uitzicht",
+        "tekst": "Klassieke broodjes, soepen en salades met de jachthaven als decor. Lokale ingrediënten, eerlijk gemaakt."
+      },
+      {
+        "tijd": "16 — 19 uur",
+        "titel": "Borrel aan het water",
+        "tekst": "Bitterballen, JuKe's signature borrelhapjes en mooie wijnen — tot de zon zakt boven de plassen."
+      }
+    ]
+  },
+  "fotos_dag": [
+    { "foto": "/images/chill-ochtend.jpg", "label": "Ochtend", "alt": "Ochtend bij JuKe — koffie en bloemen op een houten tafel met de zonsopkomst boven de jachthaven." },
+    { "foto": "/images/chill-middag.jpg",  "label": "Middag",  "alt": "Lunch op het terras met zonnebloemen, fresh food en jachten in de zon." },
+    { "foto": "/images/chill-borrel.jpg",  "label": "Borrel",  "alt": "Uitzicht vanaf een zitzak bij zonsondergang — koffie op het houten tafeltje, jachten silhouet tegen de gouden lucht." },
+    { "foto": "/images/chill-avond.jpg",   "label": "Avond",   "alt": "Fakkels, vuurkorf, zitzakjes en stringlights aan het water bij blue hour." }
+  ],
+  "bezoek": {
+    "eyebrow": "Plan je bezoek",
+    "titel": "Centraal in het\nAmsterdam Lake District",
+    "tekst": "Op een steenworp afstand van Amsterdam, Utrecht en Hilversum, aan de Loosdrechtse Plassen. Loop binnen voor koffie, reserveer een tafel op het terras, of vier je verjaardag aan het water — voor groepen vanaf tien personen maken we graag een arrangement op maat."
+  },
+  "openingstijden": [
+    { "dag": "Maandag",   "tijd": "Gesloten",      "gesloten": true },
+    { "dag": "Dinsdag",   "tijd": "Gesloten",      "gesloten": true },
+    { "dag": "Woensdag",  "tijd": "Gesloten",      "gesloten": true },
+    { "dag": "Donderdag", "tijd": "Gesloten",      "gesloten": true },
+    { "dag": "Vrijdag",   "tijd": "09:00 – 19:00", "gesloten": false },
+    { "dag": "Zaterdag",  "tijd": "09:00 – 19:00", "gesloten": false },
+    { "dag": "Zondag",    "tijd": "09:00 – 19:00", "gesloten": false }
+  ],
+  "openingstijden_noot": "Op afspraak ook op andere dagen of tijden open — bijvoorbeeld voor een feest of evenement. Neem contact op om de mogelijkheden te bespreken.",
+  "contact": {
+    "telefoon": "06 37 34 77 53",
+    "telefoon_link": "+31637347753",
+    "email": "juke.catering@gmail.com",
+    "instagram_naam": "@juke.catering",
+    "instagram_url": "https://www.instagram.com/juke.catering/",
+    "adres_regel1": "Oud-Loosdrechtsedijk 237",
+    "adres_regel2": "1231 LX Loosdrecht",
+    "adres_extra": "bij jachthaven De Uitkijk",
+    "kvk": "99534584"
+  },
+  "parkeren": {
+    "regel1": "Eerste 15 min.: gratis",
+    "regel2": "Ma t/m zo: € 2,75 p.u. — max € 22 p.d.",
+    "link": "https://www.uitkijk.com/voorwaarden-parkeerregels"
+  },
+  "footer_tag": "Laid-back café aan het water, bij jachthaven De Uitkijk."
+}

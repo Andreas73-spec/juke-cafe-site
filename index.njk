@@ -1,0 +1,253 @@
+---
+permalink: /index.html
+---
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JuKe Café · Aan het water bij De Uitkijk Loosdrecht</title>
+  <meta name="description" content="JuKe Café bij jachthaven De Uitkijk aan de Loosdrechtse Plassen. Laid-back zitzakcafé met uitzicht op het water — koffie, lunch en borrelhapjes." />
+  <meta name="keywords" content="JuKe Café, café Loosdrecht, jachthaven De Uitkijk, Loosdrechtse Plassen, terras aan het water, koffie Loosdrecht, lunch Loosdrecht, borrel Loosdrecht, JuKe Catering" />
+  <meta name="author" content="JuKe Café" />
+  <meta name="theme-color" content="#221638" />
+  <link rel="canonical" href="https://jukecafe.nl/" />
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <meta property="og:type" content="restaurant.restaurant" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:site_name" content="JuKe Café" />
+  <meta property="og:title" content="JuKe Café · Aan het water bij De Uitkijk Loosdrecht" />
+  <meta property="og:description" content="Laid-back café aan de Loosdrechtse Plassen, bij jachthaven De Uitkijk. Koffie, lunch en borrelhapjes met uitzicht op het water." />
+  <meta property="og:url" content="https://jukecafe.nl/" />
+  <meta property="og:image" content="https://jukecafe.nl/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JuKe Café · Aan het water bij De Uitkijk" />
+  <meta name="twitter:description" content="Laid-back café aan de Loosdrechtse Plassen. Koffie, lunch en borrelhapjes met uitzicht op het water." />
+  <meta name="twitter:image" content="https://jukecafe.nl/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "JuKe Café",
+    "description": "Laid-back café aan het water, bij jachthaven De Uitkijk in Loosdrecht.",
+    "url": "https://jukecafe.nl",
+    "telephone": "+31637347753",
+    "email": "{{ site.contact.email }}",
+    "image": "https://jukecafe.nl/og-image.png",
+    "servesCuisine": ["Café", "Lunch", "Borrelhapjes"],
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.contact.adres_regel1 }}",
+      "postalCode": "1231 LX",
+      "addressLocality": "Loosdrecht",
+      "addressCountry": "NL"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 52.197, "longitude": 5.087 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "19:00" }
+    ],
+    "sameAs": ["{{ site.contact.instagram_url }}"]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Caveat:wght@500;700&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=menu3" />
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <clipPath id="hero-wave-clip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.025 0 Q 0 0.0625 0.025 0.125 Q 0.05 0.1875 0.025 0.25 Q 0 0.3125 0.025 0.375 Q 0.05 0.4375 0.025 0.5 Q 0 0.5625 0.025 0.625 Q 0.05 0.6875 0.025 0.75 Q 0 0.8125 0.025 0.875 Q 0.05 0.9375 0.025 1 L 1 1 L 1 0 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  {% set topstripLink = "menu.html" %}
+  {% set topstripLinkLabel = "Bekijk de menukaart" %}
+  {% include "topstrip.njk" %}
+
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <section class="hero hero-split">
+    <nav id="primary-nav" class="site-nav hero-nav">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="menu.html">Menukaart</a>
+      <a href="catering.html">Catering</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="hero-left">
+      <a class="brand" href="index.html" aria-label="JuKe Café">
+        <img class="brand-mark" src="images/logo-pink-transparant.png" alt="JuKe Café · bij De Uitkijk Loosdrecht" />
+      </a>
+      <div class="hero-text">
+        <div class="hero-note" aria-hidden="true">
+          <span class="hero-note-text">{{ site.hero.note | replace("\n", "<br/>") | safe }}<span class="hero-note-dot"></span></span>
+        </div>
+        <h1>{{ site.hero.titel_regel1 }}<br/>{{ site.hero.titel_regel2 }}</h1>
+        <svg class="hero-wave" viewBox="0 0 260 24" fill="none" aria-hidden="true">
+          <path d="M3 12 Q 23 2, 43 12 T 83 12 T 123 12 T 163 12 T 203 12 T 257 12" stroke="#E879B5" stroke-width="3" stroke-linecap="round" />
+        </svg>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="menu.html">Bekijk de menukaart</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img class="hero-photo" src="{{ site.hero.foto }}" alt="{{ site.hero.foto_alt }}" />
+      <svg class="hero-wave-line" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 2.5 0 Q 0 62.5 2.5 125 Q 5 187.5 2.5 250 Q 0 312.5 2.5 375 Q 5 437.5 2.5 500 Q 0 562.5 2.5 625 Q 5 687.5 2.5 750 Q 0 812.5 2.5 875 Q 5 937.5 2.5 1000" stroke="#E879B5" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+      </svg>
+    </div>
+  </section>
+  <div class="hero-status">
+    {% for tag in site.hero_status %}<span>{{ tag | safe }}</span>{% endfor %}
+  </div>
+
+  <section class="split is-reverse">
+    <div class="split-inner">
+      <div class="split-media">
+        <img src="{{ site.intro.foto }}" alt="{{ site.intro.foto_alt }}" />
+      </div>
+      <div class="split-text">
+        <p class="eyebrow">{{ site.intro.eyebrow }}</p>
+        <h2>{{ site.intro.titel | replace("\n", "<br/>") | safe }}</h2>
+        <p>{{ site.intro.tekst_1 }}</p>
+        <p>{{ site.intro.tekst_2 }}</p>
+        <a class="btn btn-ghost is-dark" href="menu.html">Bekijk de menukaart</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-band">
+    <div class="dark-band-inner">
+      <div class="dark-band-head">
+        <p class="eyebrow" style="color:#fff;opacity:0.8;">{{ site.dagdelen.eyebrow }}</p>
+        <h2>{{ site.dagdelen.titel | replace("\n", "<br/>") | safe }}</h2>
+        <p>{{ site.dagdelen.intro }}</p>
+      </div>
+      <div class="cards">
+        {% for kaart in site.dagdelen.kaarten %}
+        <article class="card">
+          <span class="card-eyebrow">{{ kaart.tijd }}</span>
+          <h3>{{ kaart.titel | safe }}</h3>
+          <p>{{ kaart.tekst }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="photo-grid" aria-label="Een dag bij Juke">
+    {% for foto in site.fotos_dag %}
+    <figure>
+      <img src="{{ foto.foto }}" alt="{{ foto.alt }}" />
+      <figcaption>{{ foto.label }}</figcaption>
+    </figure>
+    {% endfor %}
+  </section>
+
+  <section id="bezoek" class="visit">
+    <div class="visit-inner">
+      <div class="visit-text">
+        <p class="eyebrow">{{ site.bezoek.eyebrow }}</p>
+        <h2>{{ site.bezoek.titel | replace("\n", "<br/>") | safe }}</h2>
+        <p>{{ site.bezoek.tekst }}</p>
+        <a class="btn btn-ghost is-dark" href="mailto:{{ site.contact.email }}">Stuur ons een e-mail</a>
+      </div>
+
+      <aside class="hours" aria-label="Openingstijden">
+        <h3>Openingstijden</h3>
+        <dl>
+          {% for dag in site.openingstijden %}
+          <div{% if dag.gesloten %} class="is-closed"{% endif %}><dt>{{ dag.dag }}</dt><dd>{{ dag.tijd }}</dd></div>
+          {% endfor %}
+        </dl>
+        <p class="hours-note">{{ site.openingstijden_noot }}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="location" id="contact">
+    <div class="location-inner">
+      <div class="location-map">
+        <iframe
+          src="https://maps.google.com/maps?q=Oud-Loosdrechtsedijk+237,+1231+LX+Loosdrecht&amp;output=embed"
+          title="Kaart van JuKe Café bij De Uitkijk in Loosdrecht"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+      <div class="location-info">
+        <div class="location-block">
+          <h3>Adres</h3>
+          <p><strong>JuKe Catering</strong><br/>KVK {{ site.contact.kvk }}</p>
+          <p>{{ site.contact.adres_regel1 }}<br/>{{ site.contact.adres_regel2 }}<br/><span class="muted">{{ site.contact.adres_extra }}</span></p>
+          <p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Oud-Loosdrechtsedijk+237,+1231+LX+Loosdrecht" target="_blank" rel="noopener">Direct navigeren</a></p>
+        </div>
+        <div class="location-block">
+          <h3>Contact</h3>
+          <p><a href="tel:{{ site.contact.telefoon_link }}">{{ site.contact.telefoon }}</a></p>
+          <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
+          <p><a href="{{ site.contact.instagram_url }}" target="_blank" rel="noopener">{{ site.contact.instagram_naam }}</a></p>
+        </div>
+        <div class="location-block">
+          <h3>Parkeren</h3>
+          <p>{{ site.parkeren.regel1 }}</p>
+          <p>{{ site.parkeren.regel2 }}</p>
+          <p><a href="{{ site.parkeren.link }}" target="_blank" rel="noopener">Voorwaarden parkeerregels</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-pair">
+    <div class="cta-pair-inner">
+      <a class="cta-card" href="menu.html">
+        <svg class="cta-card-icon" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M30 15 Q 30 50, 50 55 Q 70 50, 70 15 Z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round" />
+          <line x1="50" y1="55" x2="50" y2="82" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
+          <line x1="34" y1="86" x2="66" y2="86" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
+        </svg>
+        <div class="cta-card-text">
+          <span class="cta-card-eyebrow">Menukaart</span>
+          <h3>Bekijk de kaart van het seizoen.</h3>
+        </div>
+      </a>
+      <a class="cta-card" href="catering.html">
+        <svg class="cta-card-icon" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M22 62 Q 22 32, 50 32 Q 78 32, 78 62 Z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round" />
+          <circle cx="50" cy="26" r="3.2" fill="none" stroke="currentColor" stroke-width="2.4" />
+          <line x1="50" y1="29" x2="50" y2="32" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+          <line x1="14" y1="68" x2="86" y2="68" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
+          <path d="M40 20 Q 38 16, 40 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M50 14 Q 48 10, 50 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M60 20 Q 62 16, 60 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <div class="cta-card-text">
+          <span class="cta-card-eyebrow">Catering</span>
+          <h3>JuKe op tafel, op het water, op locatie.</h3>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  {% include "footer.njk" %}
+  {% include "scripts.njk" %}
+</body>
+</html>

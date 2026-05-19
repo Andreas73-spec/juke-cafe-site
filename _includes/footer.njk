@@ -1,0 +1,32 @@
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <img class="footer-logo" src="images/logo-pink-transparant.png" alt="JuKe Café logo" />
+      <p class="footer-tag">{{ site.footer_tag }}</p>
+    </div>
+    <div>
+      <h4>Menu</h4>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menukaart</a></li>
+        <li><a href="catering.html">Catering</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Bezoek</h4>
+      <p>JuKe Café<br/>{{ site.contact.adres_regel1 }}<br/>{{ site.contact.adres_regel2 }}</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>
+        <a href="tel:{{ site.contact.telefoon_link }}">{{ site.contact.telefoon }}</a><br/>
+        <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a><br/>
+        <a href="{{ site.contact.instagram_url }}" target="_blank" rel="noopener">{{ site.contact.instagram_naam }}</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© <span id="year"></span> JuKe Café</span>
+  </div>
+</footer>

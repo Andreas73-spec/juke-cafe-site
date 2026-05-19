@@ -1,0 +1,101 @@
+---
+permalink: /catering.html
+---
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catering · JuKe Café · Foodtruck &amp; events</title>
+  <meta name="description" content="JuKe Catering bij Loosdrecht — café aan het water, borrelplanken voor op de boot en foodtruck voor events op locatie." />
+  <meta name="keywords" content="JuKe Catering, foodtruck Loosdrecht, borrelplanken Loosdrechtse Plassen, sloep catering, bedrijfsborrel, events op locatie" />
+  <meta name="theme-color" content="#221638" />
+  <link rel="canonical" href="https://jukecafe.nl/catering.html" />
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:site_name" content="JuKe Café" />
+  <meta property="og:title" content="Catering · JuKe Café · Foodtruck &amp; events" />
+  <meta property="og:description" content="Borrelplanken voor op de boot, foodtruck voor events op locatie, en het café aan het water." />
+  <meta property="og:url" content="https://jukecafe.nl/catering.html" />
+  <meta property="og:image" content="https://jukecafe.nl/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Catering · JuKe Café" />
+  <meta name="twitter:description" content="Borrelplanken voor op de boot, foodtruck voor events op locatie." />
+  <meta name="twitter:image" content="https://jukecafe.nl/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=menu3" />
+</head>
+<body class="page-catering">
+  {% set topstripLink = "index.html" %}
+  {% set topstripLinkLabel = "Terug naar home" %}
+  {% include "topstrip.njk" %}
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="JuKe Café">
+      <img class="brand-mark" src="images/logo-pink-transparant.png" alt="JuKe Café · bij De Uitkijk Loosdrecht" />
+    </a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="primary-nav" class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menukaart</a>
+      <a href="catering.html" aria-current="page">Catering</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="menu-hero">
+    <p class="eyebrow">{{ catering.hero.eyebrow }}</p>
+    <h1>{{ catering.hero.titel | replace("\n", "<br/>") | safe }}</h1>
+    <p class="lede">{{ catering.hero.lede }}</p>
+  </section>
+
+  <main class="catering-main">
+    <section class="catering-cards">
+      {% for kaart in catering.kaarten %}
+      <article class="catering-card">
+        <div class="catering-card-media">
+          <img src="{{ kaart.foto }}" alt="{{ kaart.foto_alt }}" />
+        </div>
+        <div class="catering-card-body">
+          <span class="catering-card-num">{{ kaart.nummer }}</span>
+          <p class="catering-card-eyebrow">{{ kaart.eyebrow }}</p>
+          <h2>{{ kaart.titel | replace("\n", "<br/>") | safe }}</h2>
+          <p>{{ kaart.tekst }}</p>
+          <ul class="catering-tags">
+            {% for tag in kaart.tags %}<li>{{ tag }}</li>{% endfor %}
+          </ul>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+
+    <section class="catering-cta">
+      <p class="eyebrow">{{ catering.cta.eyebrow }}</p>
+      <h2>{{ catering.cta.titel | replace("\n", "<br/>") | safe }}</h2>
+      <p>{{ catering.cta.tekst }}</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:{{ site.contact.telefoon_link }}">{{ site.contact.telefoon }}</a>
+        <a class="btn btn-ghost is-dark" href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
+      </div>
+    </section>
+  </main>
+
+  {% include "footer.njk" %}
+  {% include "scripts.njk" %}
+</body>
+</html>

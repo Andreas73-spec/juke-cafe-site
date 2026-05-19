@@ -1,0 +1,70 @@
+JuKe Café — Logo-pakket
+========================
+
+Twee kleurvarianten, elk in meerdere formaten en maten.
+
+
+📁 /donker/  — Donker logo (script in dark ink)
+─────────────────────────────────────────
+Voor lichte achtergronden (cream, sage groen, wit, foto's).
+
+  Transparant (PNG met alpha):
+    • juke-donker-transparant-512px.png
+    • juke-donker-transparant-1024px.png
+    • juke-donker-transparant-2048px.png   ← hoogste kwaliteit
+
+  Met achtergrond (PNG + JPG):
+    • juke-donker-op-cream-1024px.png/jpg     — voor website
+    • juke-donker-op-cream-512px.jpg          — kleinere variant
+    • juke-donker-op-sage-1024px.png/jpg      — voor menukaarten
+    • juke-donker-op-sage-512px.jpg           — kleinere variant
+    • juke-donker-op-wit-1024px.jpg           — printvriendelijk
+    • juke-donker-op-wit-512px.jpg
+
+  Vector-achtig:
+    • juke-donker.svg   — SVG container met embedded PNG (schaalbaar
+                          voor websites en social media; voor échte
+                          vector-bewerking heb je een vectorbestand
+                          van de oorspronkelijke designer nodig)
+
+
+📁 /pink/  — Pink logo (script in JuKe-pink #C45E8E)
+─────────────────────────────────────────
+De brand-kleur. Goed op cream, midnight purple en wit.
+
+  Transparant (PNG met alpha):
+    • juke-pink-transparant-512px.png
+    • juke-pink-transparant-1024px.png
+    • juke-pink-transparant-2048px.png   ← hoogste kwaliteit
+
+  Met achtergrond (PNG + JPG):
+    • juke-pink-op-cream-1024px.png/jpg       — voor website
+    • juke-pink-op-cream-512px.jpg
+    • juke-pink-op-midnight-1024px.png/jpg    — voor dark mode / footer
+    • juke-pink-op-midnight-512px.jpg
+    • juke-pink-op-wit-1024px.jpg             — printvriendelijk
+    • juke-pink-op-wit-512px.jpg
+
+  Vector-achtig:
+    • juke-pink.svg
+
+
+🎨 Brand-kleuren
+─────────────────
+  Pink (brand):      #C45E8E
+  Midnight purple:   #221638
+  Cream (achtergr.): #F8F5EE
+  Sage groen (menu): #C5CCA5
+  Donker (logo ink): #1F1A14
+
+
+💡 Welk formaat wanneer?
+─────────────────────────
+  Website / social media:    transparant PNG (1024 of 2048)
+  Printen op donker:         pink op midnight PNG
+  Printen op licht:          donker op wit JPG of cream PNG
+  Stempel / sticker:         donker transparant PNG
+  Email / Office:            JPG (kleinere bestandsgrootte)
+
+
+© JuKe Catering
