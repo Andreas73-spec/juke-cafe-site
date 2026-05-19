@@ -118,7 +118,50 @@ netlify.toml        ← Netlify build-config
 
 ---
 
-## 5. Veelgestelde vragen
+## 5. De print-menukaart op tafel
+
+Op `/admin/` zie je rechtsonder twee knoppen:
+
+- **Print-menukaart openen** → opent de A4 menukaart in een nieuw tabblad
+- **Website bekijken** → opent de live site
+
+De print-versie is **dubbelzijdig op A4**, in twee kleurvarianten (4 pagina's totaal):
+
+| Pagina | Variant |
+| --- | --- |
+| 1 | Sage groen — voorkant |
+| 2 | Sage groen — achterkant |
+| 3 | JuKe pink/midnight — voorkant |
+| 4 | JuKe pink/midnight — achterkant |
+
+Bij Cmd+P kun je kiezen welke variant je print (bv. alleen pagina 1–2 voor sage).
+
+### Wat past per sectie op de print
+
+De website-menukaart heeft geen limiet (scrollt door), maar de print is een vaste A4
+met beperkte plek per vak. Richtlijn voor wat er **netjes** past per sectie:
+
+| Sectie | Aantal items netjes |
+| --- | --- |
+| Voor bij de koffie | ~5 |
+| Borrelplanken | ~3 |
+| Verse broodjes | ~7 |
+| Warme happen | ~7 |
+| Koude happen | ~7 |
+| Wijnen | ~10 wijnen totaal |
+| Picknick | ~2 |
+
+Tot een paar items extra past het automatisch (de tekst krimpt iets in). Daarna wordt
+het echt te druk en kan iets over de rand lopen.
+
+### Werkwijze
+
+1. Pas iets aan in **CMS → Menukaart** → Publish.
+2. Wacht ~20 sec tot de site herbouwd is.
+3. Klik op **Print-menukaart openen** → check of het er nog goed uitziet.
+4. Te druk geworden? Verwijder iets ouds, of bel Andreas.
+
+## 6. Veelgestelde vragen
 
 **Wat gebeurt er als ik een tekstvakje leegmaak?**
 Dan verdwijnt dat stukje van de site. Wil je bijv. de heropening-balk weghalen,
@@ -142,7 +185,7 @@ hard refresh doen (Cmd+Shift+R) om je browser-cache te wissen.
 
 ---
 
-## 6. Wat als het hele CMS-verhaal niet meer hoeft?
+## 7. Wat als het hele CMS-verhaal niet meer hoeft?
 
 De `_data/*.json`-bestanden + `.njk`-templates blijven gewoon werken zonder CMS. Je kunt
 ze ook met de hand bewerken in een teksteditor. Decap CMS is alleen een mooi formulier

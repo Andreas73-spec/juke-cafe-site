@@ -135,7 +135,13 @@ collections:
   # ─────────────────────────────────────────────
   - name: "menukaart"
     label: "Menukaart"
-    description: "Alle gerechten, prijzen en secties van de menukaart."
+    description: |
+      Alle gerechten, prijzen en secties — wat je hier aanpast verschijnt op de website
+      én op de print-menukaart voor op tafel.
+
+      💡 Tip: na het opslaan klik je rechtsonder op "Print-menukaart openen" om te
+      checken hoe het er op A4 uitziet. Per sectie is er beperkte plek (zie de hint
+      bij elke sectie). Past iets niet meer? Verwijder een ander item of bel Andreas.
     files:
       - file: "_data/menu.json"
         label: "Menukaart"
@@ -159,11 +165,16 @@ collections:
               - { label: "Voettekst (optioneel)", name: "voettekst", widget: string, required: false, hint: "Tekst onder de items, bijv. 'Plank uitbreiden?'" }
               - { label: "Extra CSS-klasse (laat leeg)", name: "klasse_extra", widget: string, required: false, hint: "Alleen invullen als de designer dit aangeeft" }
 
-              - label: "Items"
+              - label: "Items in deze sectie"
                 name: "items"
                 widget: list
                 required: false
                 summary: "{{fields.naam}} — € {{fields.prijs}}"
+                hint: |
+                  Maximaal aantal items dat netjes op de A4-print past per sectie:
+                  • Voor bij de koffie: ~5  • Borrelplanken: ~3  • Verse broodjes: ~7
+                  • Warme happen: ~7  • Koude happen: ~7  • Picknick: ~2
+                  Online is er geen limiet — daar scrollt het door.
                 fields:
                   - { label: "Naam gerecht", name: "naam", widget: string }
                   - { label: "Beschrijving", name: "beschrijving", widget: text, required: false }
@@ -175,9 +186,10 @@ collections:
                 widget: list
                 required: false
                 summary: "{{fields.titel}}"
+                hint: "Bij wijnen passen ~10 wijnen in totaal netjes op de A4-print (verdeeld over wit/rosé/rood/cava)."
                 fields:
                   - { label: "Subsectietitel (Wit, Rood…)", name: "titel", widget: string }
-                  - label: "Items"
+                  - label: "Wijnen in deze categorie"
                     name: "items"
                     widget: list
                     summary: "{{fields.naam}} — € {{fields.prijs}}"

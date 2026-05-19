@@ -219,6 +219,28 @@ permalink: /menukaart-print.html
       opacity: 0.85;
     }
 
+    /* Auto-compact: als een sectie meer items heeft dan handig past,
+       worden tekst + padding ietsje kleiner — zo blijft het netjes
+       als de eigenaar 1-2 extra gerechten toevoegt via het CMS. */
+    .menu-list:has(li:nth-child(8)) li {
+      padding: 1mm 0;
+    }
+    .menu-list:has(li:nth-child(8)) .item-name,
+    .menu-list:has(li:nth-child(8)) .item-price {
+      font-size: 9pt;
+    }
+    .menu-list:has(li:nth-child(8)) .item-desc {
+      font-size: 8pt;
+      line-height: 1.3;
+    }
+    .menu-list:has(li:nth-child(10)) li {
+      padding: 0.6mm 0;
+    }
+    .menu-list:has(li:nth-child(10)) .item-name,
+    .menu-list:has(li:nth-child(10)) .item-price {
+      font-size: 8.5pt;
+    }
+
     /* === FRONT grid === */
     .grid-front {
       flex: 1;
