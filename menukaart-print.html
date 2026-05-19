@@ -245,22 +245,21 @@ permalink: /menukaart-print.html
       margin-bottom: 0;
     }
 
-    /* === Wijnen block (sub categories) === */
-    .wijnen-list .sub-cat {
+    /* === Wijnen: gebruikt dezelfde menu-list, met sub-cat als full-width row === */
+    .menu-list li.wijn-subcat {
+      grid-template-columns: 1fr;
+      padding: 1mm 0 0.5mm;
       font-weight: 700;
       font-size: 9pt;
-      margin-top: 2mm;
-      margin-bottom: 1mm;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
-    .wijnen-list .sub-cat:first-child { margin-top: 0; }
-    .wijnen-list .wine-name {
-      font-size: 8.5pt;
-      font-weight: 500;
-      line-height: 1.35;
-    }
-    .wijnen-list .wine-price {
-      font-size: 8.5pt;
-      font-weight: 500;
+    .menu-list li.wijn-subcat::before { content: none; }
+    /* Wijn-naam mag in mixed case blijven (te lang voor uppercase) */
+    .menu-list li.wijn .item-name {
+      letter-spacing: 0.02em;
+      text-transform: none;
+      font-weight: 600;
     }
 
     /* === PSST footer === */
@@ -393,19 +392,21 @@ permalink: /menukaart-print.html
     </ul>
   {% endmacro %}
 
-  {# ─── Macro: wijnen renderen ─── #}
+  {# ─── Macro: wijnen renderen — zelfde menu-list structuur als de rest #}
   {% macro renderWijnen(subsecties) %}
-    <div class="wijnen-list">
+    <ul class="menu-list">
       {% for sub in subsecties %}
-        <div class="sub-cat">{{ sub.titel }}:</div>
+        <li class="wijn-subcat"><div>{{ sub.titel }}</div></li>
         {% for w in sub.items %}
-        <div style="margin-bottom:2mm;">
-          <div class="wine-name">{{ w.naam }}</div>
-          <div class="wine-price">€ {{ w.prijs | replace(" — ", " — € ") }}</div>
-        </div>
+        <li class="wijn">
+          <div>
+            <div class="item-name">{{ w.naam }}</div>
+          </div>
+          <div class="item-price">{{ w.prijs | replace(" — ", " — € ") }}</div>
+        </li>
         {% endfor %}
       {% endfor %}
-    </div>
+    </ul>
   {% endmacro %}
 
   {# ─── Macro: complete VOORKANT (sage of juke) ─── #}
