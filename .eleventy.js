@@ -22,6 +22,19 @@ module.exports = function (eleventyConfig) {
     return n.toFixed(2).replace(".", ",");
   });
 
+  // Zoek een menu-sectie op titel (case-insensitive, accent-tolerant)
+  // Gebruik: {{ menu.secties | sectie("Voor bij de koffie") }}
+  eleventyConfig.addFilter("sectie", function (secties, titel) {
+    if (!Array.isArray(secties) || !titel) return null;
+    const norm = (s) => String(s || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .trim();
+    const target = norm(titel);
+    return secties.find((s) => norm(s.titel) === target) || null;
+  });
+
   return {
     dir: {
       input: ".",

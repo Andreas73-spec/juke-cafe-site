@@ -423,18 +423,18 @@ permalink: /menukaart-print.html
     <div class="grid-front">
       <div>
         <div class="section-box" data-label="VOOR BIJ DE KOFFIE">
-          {{ renderItems(menu.secties[0].items) }}
+          {% set sectie = menu.secties | sectie("Voor bij de koffie") %}{% if sectie %}{{ renderItems(sectie.items) }}{% endif %}
         </div>
 
         <div class="section-box" data-label="BORRELPLANKEN">
-          {{ renderItems(menu.secties[2].items) }}
+          {% set sectie = menu.secties | sectie("Borrelplanken") %}{% if sectie %}{{ renderItems(sectie.items) }}{% endif %}
           <p class="allergen-note" style="text-align: left; font-size: 8pt; margin-top: 3mm;">* Planken uitbreiden? Kijk snel op de achterkant voor extra borrelhapjes!</p>
         </div>
       </div>
 
       <div>
         <div class="section-box" data-label="VERSE BROODJES" style="flex: 1;">
-          {{ renderItems(menu.secties[1].items) }}
+          {% set sectie = menu.secties | sectie("Verse broodjes") %}{% if sectie %}{{ renderItems(sectie.items) }}{% endif %}
         </div>
       </div>
     </div>
@@ -456,18 +456,18 @@ permalink: /menukaart-print.html
     <div class="grid-back">
       <div>
         <div class="section-box" data-label="WARME HAPPEN">
-          {{ renderItems(menu.secties[3].items) }}
+          {% set sectie = menu.secties | sectie("Warme happen") %}{% if sectie %}{{ renderItems(sectie.items) }}{% endif %}
           <p class="allergen-note">Heeft u allergieën of dieetwensen? Laat het ons weten, dan kunnen wij er eventueel rekening mee houden.</p>
         </div>
 
         <div class="section-box" data-label="WIJNEN">
-          {{ renderWijnen(menu.secties[5].subsecties) }}
+          {% set sectie = menu.secties | sectie("Wijnen") %}{% if sectie and sectie.subsecties %}{{ renderWijnen(sectie.subsecties) }}{% endif %}
         </div>
       </div>
 
       <div>
         <div class="section-box" data-label="KOUDE HAPPEN">
-          {{ renderItems(menu.secties[4].items) }}
+          {% set sectie = menu.secties | sectie("Koude happen") %}{% if sectie %}{{ renderItems(sectie.items) }}{% endif %}
         </div>
 
         <div class="picknick-block">
@@ -477,12 +477,15 @@ permalink: /menukaart-print.html
             <path d="M30 6 L 42 26 L 30 26 Z" />
             <path d="M10 30 Q 30 33 50 30" />
           </svg>
-          <div class="picknick-title">{{ menu.secties[6].titel }}</div>
-          <div class="picknick-sub">{{ menu.secties[6].ondertitel | replace("⛵", "") | trim }}</div>
-          {% for item in menu.secties[6].items %}
+          {% set picknick = menu.secties | sectie("Picknick op het water") %}
+          {% if picknick %}
+          <div class="picknick-title">{{ picknick.titel }}</div>
+          <div class="picknick-sub">{{ picknick.ondertitel | replace("⛵", "") | trim }}</div>
+          {% for item in picknick.items %}
             {% if item.beschrijving %}<div class="picknick-ing">{{ item.beschrijving | replace(".", "") }}</div>{% endif %}
             <div class="picknick-price">{{ item.prijs }}</div>
           {% endfor %}
+          {% endif %}
         </div>
 
         <div class="catering-block">
