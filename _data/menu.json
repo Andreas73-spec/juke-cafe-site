@@ -18,12 +18,12 @@
       "titel": "Verse broodjes",
       "ondertitel": "",
       "items": [
-        { "naam": "Mortadella", "beschrijving": "Met burrata, perzik en crispy chili oil.", "prijs": "12,50" },
-        { "naam": "Carpaccio", "beschrijving": "Pesto, zongedroogde tomaatjes, rucola, rode ui, kappertjes, parmezaan en saladepitjes.", "prijs": "12,50" },
-        { "naam": "Tonijnsalade", "beschrijving": "Broodje met huisgemaakte tonijnsalade, afgetopt met diverse garnituren.", "prijs": "10,50" },
-        { "naam": "Tosti brie", "beschrijving": "Met gekarameliseerde ui, vijgenjam en saladegarnituur.", "prijs": "9,50", "vega": true },
-        { "naam": "Flammkuchen à la JuKe", "beschrijving": "Frisse tomaatjes, rucola, féta en verse kruiden.", "prijs": "12,50", "vega": true },
-        { "naam": "Seizoenssalade", "beschrijving": "Heerlijke salade met seizoensproducten — vraag de bediening naar de special van de dag.", "prijs": "11,50" }
+        { "naam": "Mortadella", "beschrijving": "Vloerbrood met burrata, rucola, nootjes en een frisse dressing van mango.", "prijs": "12,50" },
+        { "naam": "Carpaccio", "beschrijving": "Vloerbrood met pestodressing, zongedroogde tomaatjes, rucola, rode ui, kappertjes, parmezaan en saladepitjes.", "prijs": "12,50" },
+        { "naam": "Tonijnsalade", "beschrijving": "Vloerbrood met huisgemaakte tonijnsalade afgetopt met diverse garnituren.", "prijs": "10,50" },
+        { "naam": "Tosti brie", "beschrijving": "Met ingelegde ui, vijgenjam en walnoten.", "prijs": "9,50", "vega": true },
+        { "naam": "Flammkuchen à la JuKe", "beschrijving": "Flinterdunne pompoen, geitenkaas, rucola, walnoten en honing.", "prijs": "12,50", "vega": true },
+        { "naam": "Seizoenssalade", "beschrijving": "Heerlijke salade met seizoensproducten, vraag de bediening naar de special van de dag.", "prijs": "14,50" }
       ]
     },
     {
