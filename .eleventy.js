@@ -9,7 +9,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("favicon-64x64.png");
   eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
   eleventyConfig.addPassthroughCopy("og-image.png");
+  eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("admin");
+
+  // Build-datum (voor sitemap lastmod)
+  eleventyConfig.addGlobalData("buildDate", () => new Date().toISOString().split("T")[0]);
   eleventyConfig.addPassthroughCopy("logo-pakket");
   eleventyConfig.addPassthroughCopy("logo-pakket-juke.zip");
 

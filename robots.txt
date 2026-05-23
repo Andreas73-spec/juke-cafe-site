@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Beheerpaneel niet indexeren
+Disallow: /admin/
+
+# Print-versie van de menukaart hoeft niet in de zoekresultaten
+Disallow: /menukaart-print.html
+
+Sitemap: https://jukecafe.nl/sitemap.xml
