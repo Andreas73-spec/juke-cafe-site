@@ -10,6 +10,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
   eleventyConfig.addPassthroughCopy("og-image.png");
   eleventyConfig.addPassthroughCopy("robots.txt");
+  eleventyConfig.addPassthroughCopy("google249e7a73fbc3be79.html");
   eleventyConfig.addPassthroughCopy("admin");
 
   // Build-datum (voor sitemap lastmod)
