@@ -2,28 +2,27 @@
   "hero": {
     "eyebrow": "Menukaart",
     "titel": "De kaart\nvan het seizoen",
-    "lede": "Van gebak bij de koffie en verse broodjes tot borrelplanken, lekkere happen en een picknick voor op de boot. Allergie of dieetwens? Vertel het gerust — we denken graag mee."
+    "lede": "Van iets zoets bij de koffie en verse broodjes tot borrelplanken, warme en koude happen, specials en mooie wijnen. Allergie of dieetwens? Vertel het gerust — we denken graag mee."
   },
   "secties": [
     {
       "titel": "Voor bij de koffie",
       "ondertitel": "",
       "items": [
-        { "naam": "Opa's appelkruimel gebak", "beschrijving": "Naar het recept van de oude brood- en banketbakkerij Westveen uit Nieuwersluis.", "prijs": "5,25" },
         { "naam": "Bananenbrood", "beschrijving": "Vers bereid.", "prijs": "4,25" },
-        { "naam": "Weekend special", "beschrijving": "Elk weekend een wisselende zoete verrassing, afgestemd op het seizoen.", "prijs": "5,25" }
+        { "naam": "Weekend special", "beschrijving": "Elk weekend een zoete verrassing, afgestemd op het seizoen.", "prijs": "5,25" }
       ]
     },
     {
       "titel": "Verse broodjes",
       "ondertitel": "",
       "items": [
-        { "naam": "Mortadella", "beschrijving": "Vloerbrood met burrata, rucola, nootjes en een frisse dressing van mango.", "prijs": "12,50" },
-        { "naam": "Carpaccio", "beschrijving": "Vloerbrood met pestodressing, zongedroogde tomaatjes, rucola, rode ui, kappertjes, parmezaan en saladepitjes.", "prijs": "12,50" },
-        { "naam": "Tonijnsalade", "beschrijving": "Vloerbrood met huisgemaakte tonijnsalade afgetopt met diverse garnituren.", "prijs": "10,50" },
-        { "naam": "Tosti brie", "beschrijving": "Met ingelegde ui, vijgenjam en walnoten.", "prijs": "9,50", "vega": true },
-        { "naam": "Flammkuchen à la JuKe", "beschrijving": "Flinterdunne pompoen, geitenkaas, rucola, walnoten en honing.", "prijs": "12,50", "vega": true },
-        { "naam": "Seizoenssalade", "beschrijving": "Heerlijke salade met seizoensproducten, vraag de bediening naar de special van de dag.", "prijs": "14,50" }
+        { "naam": "Mortadella", "beschrijving": "Vloerbrood met dungesneden Italiaanse vleeswaren, burrata, gemengde sla, nootjes en een frisse dressing van mango.", "prijs": "12,50" },
+        { "naam": "Carpaccio", "beschrijving": "Vloerbrood met pestodressing, zongedroogde tomaatjes, gemengde salade, kappertjes en parmezaan.", "prijs": "12,50" },
+        { "naam": "Tonijnsalade", "beschrijving": "Vloerbrood met huisgemaakte tonijnsalade, afgetopt met diverse garnituren.", "prijs": "10,50" },
+        { "naam": "Tosti brie", "beschrijving": "Met ingelegde ui en vijgenjam.", "prijs": "9,50", "vega": true },
+        { "naam": "Pinsa à la JuKe", "beschrijving": "Flinterdunne peer en blauwe kaas, afgetopt met walnoten en balsamico.", "prijs": "12,50", "vega": true },
+        { "naam": "Seizoenssalade", "beschrijving": "Heerlijke salade met seizoensproducten — vraag de bediening naar de special van de dag.", "prijs": "14,50" }
       ]
     },
     {
@@ -31,18 +30,19 @@
       "ondertitel": "",
       "voettekst": "Plank uitbreiden? Combineer met de warme of koude happen hieronder.",
       "items": [
-        { "naam": "JuKe's borrelplank klassiek", "beschrijving": "Kaas, charcuterie, dips, olijven en brood.", "prijs": "25,00" },
-        { "naam": "JuKe's borrelplank deluxe", "beschrijving": "De heerlijke smaak van de klassieke borrelplank, met luxere signature JuKe-aanvullingen.", "prijs": "32,50" }
+        { "naam": "JuKe's borrelplank klassiek", "beschrijving": "Voor 2 personen. Kaas, charcuterie, dips, olijven en brood.", "prijs": "27,50" },
+        { "naam": "JuKe's borrelplank deluxe", "beschrijving": "Voor 2 personen. De heerlijke smaak van de klassieke borrelplank, met luxere signature JuKe-aanvulling.", "prijs": "32,50" },
+        { "naam": "Borrelplank op het water", "beschrijving": "Kaas, verschillende charcuterie, diverse dips, olijven, brood, crackers en fruit.", "prijs": "35,00" }
       ]
     },
     {
       "titel": "Warme happen",
       "ondertitel": "",
       "items": [
-        { "naam": "Rundvlees bitterballen", "beschrijving": "Acht stuks.", "prijs": "8,50" },
-        { "naam": "Kaasstengels", "beschrijving": "Acht stuks.", "prijs": "8,50" },
-        { "naam": "Gehaktballetjes in huisgemaakte tomatensaus", "beschrijving": "Acht stuks.", "prijs": "8,50" },
-        { "naam": "Camembert uit de oven", "beschrijving": "Met rozemarijn en dipcrackers.", "prijs": "9,50" },
+        { "naam": "Rundvlees bitterballen", "beschrijving": "Acht stuks.", "prijs": "8,95" },
+        { "naam": "Kaasstengels", "beschrijving": "Acht stuks.", "prijs": "8,95" },
+        { "naam": "Gehaktballetjes in huisgemaakte tomatensaus", "beschrijving": "Acht stuks.", "prijs": "8,95" },
+        { "naam": "Camembert uit de oven", "beschrijving": "Met rozemarijn en vijgen.", "prijs": "9,50" },
         { "naam": "Crispy bloemkool bites", "beschrijving": "", "prijs": "9,50" },
         { "naam": "Vega loaded nacho's", "beschrijving": "Met verse guacamole.", "prijs": "11,50" }
       ]
@@ -52,11 +52,33 @@
       "ondertitel": "",
       "items": [
         { "naam": "Gemarineerde olijven & nootjes", "beschrijving": "", "prijs": "5,50" },
-        { "naam": "Brood met verse dips", "beschrijving": "", "prijs": "8,00" },
-        { "naam": "Padron pepers", "beschrijving": "", "prijs": "8,00" },
-        { "naam": "Tomatentartaar met burrata", "beschrijving": "Met basilicumolie.", "prijs": "8,00" },
+        { "naam": "Brood met signature dips", "beschrijving": "", "prijs": "8,50" },
+        { "naam": "Tomatentartaar met burrata", "beschrijving": "Met basilicumolie.", "prijs": "9,50" },
         { "naam": "Loaded zeezout crisps", "beschrijving": "Met tonijnsalsa.", "prijs": "10,50" },
-        { "naam": "Sushi to share", "beschrijving": "Of helemaal voor jezelf.", "prijs": "10,50" }
+        { "naam": "Crunchy sushi to share", "beschrijving": "Of helemaal voor jezelf.", "prijs": "10,50" }
+      ]
+    },
+    {
+      "titel": "Specials",
+      "ondertitel": "Vraag de bediening naar de prijzen van de dag",
+      "subsecties": [
+        {
+          "titel": "Homemade lemonade",
+          "items": [
+            { "naam": "Citroen / limoen", "prijs": "" },
+            { "naam": "Vlierbloesem", "prijs": "" }
+          ]
+        },
+        {
+          "titel": "Cocktails",
+          "items": [
+            { "naam": "Pornstar Martini / 0.0", "prijs": "" },
+            { "naam": "Aperol Spritz", "prijs": "" },
+            { "naam": "Limoncello Spritz", "prijs": "" },
+            { "naam": "Gin Tonic", "prijs": "" },
+            { "naam": "Scroppino", "prijs": "" }
+          ]
+        }
       ]
     },
     {
@@ -66,21 +88,21 @@
         {
           "titel": "Wit",
           "items": [
-            { "naam": "Viognier Les Vignerons de Florensac", "prijs": "4,95 — 27,50" },
-            { "naam": "Chardonnay Les Vignerons de Florensac", "prijs": "4,95 — 27,50" },
-            { "naam": "Grüner Veltliner 'Lehm & Löss' Weingut Julius Klein", "prijs": "5,75 — 32,50" }
+            { "naam": "Viognier Les Vignerons de Florensac", "prijs": "5,75 — 29,50" },
+            { "naam": "Chardonnay Les Vignerons de Florensac", "prijs": "5,75 — 29,50" },
+            { "naam": "Grüner Veltliner 'Lehm & Löss' Weingut Julius Klein", "prijs": "6,25 — 35,00" }
           ]
         },
         {
           "titel": "Rosé",
           "items": [
-            { "naam": "Instant Rosé Domaine les Charmettes", "prijs": "4,95 — 27,50" }
+            { "naam": "Instant Rosé Domaine les Charmettes", "prijs": "5,75 — 29,50" }
           ]
         },
         {
           "titel": "Rood",
           "items": [
-            { "naam": "Primitivo Negroamaro Salento — Bacca Nera, Casa Vinicola Botter", "prijs": "4,95 — 27,50" }
+            { "naam": "Primitivo Negroamaro Salento — Bacca Nera, Casa Vinicola Botter", "prijs": "5,75 — 29,50" }
           ]
         },
         {
@@ -90,17 +112,13 @@
           ]
         }
       ]
-    },
-    {
-      "titel": "Picknick op het water",
-      "ondertitel": "Neem ons mee de plas op ⛵",
-      "klasse_extra": "menu-section-picnic",
-      "items": [
-        { "naam": "Picknick voor op de boot", "beschrijving": "Kaas · charcuterie · olijven · nootjes · brood · 2 dips · crudité.", "prijs": "35,00" },
-        { "naam": "Picknick + fles", "beschrijving": "Inclusief fles rosé, bubbels of bier.", "prijs": "50,00" }
-      ]
     }
   ],
+  "event_blok": {
+    "tonen": true,
+    "titel": "Iets te vieren of organiseren?",
+    "tekst": "Of het nu gaat om een vergadering, bedrijfsuitje, buurtborrel of vrijgezellenfeest: bij ons zijn er volop mogelijkheden. Informeer bij de bediening of mail naar juke.catering@gmail.com."
+  },
   "voetnoot_takeaway_intro": "Psst… wist je al dat ",
   "voetnoot_takeaway_bold": "alles van onze menukaart ook afgehaald kan worden",
   "voetnoot_takeaway_outro": "? Heerlijk voor op de boot, mee naar huis of lekker onderweg. Geniet ervan!",

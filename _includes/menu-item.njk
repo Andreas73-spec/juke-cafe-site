@@ -1,9 +1,11 @@
 {# Render één menu-item; verwacht een 'item' variabele in context #}
 <li>
-  <div class="menu-row">
+  <div class="menu-row{% if not item.prijs %} is-priceless{% endif %}">
     <span class="menu-name">{{ item.naam | safe }}{% if item.vega %} <span class="menu-vega" aria-label="vegetarisch">vega</span>{% endif %}</span>
+    {% if item.prijs %}
     <span class="menu-dots" aria-hidden="true"></span>
     <span class="menu-price">{{ item.prijs }}</span>
+    {% endif %}
   </div>
   {% if item.beschrijving %}<p class="menu-desc">{{ item.beschrijving | safe }}</p>{% endif %}
 </li>

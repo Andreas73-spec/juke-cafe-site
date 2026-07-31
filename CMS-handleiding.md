@@ -143,13 +143,16 @@ met beperkte plek per vak. Richtlijn voor wat er **netjes** past per sectie:
 
 | Sectie | Aantal items netjes |
 | --- | --- |
-| Voor bij de koffie | ~5 |
-| Borrelplanken | ~3 |
-| Verse broodjes | ~7 |
-| Warme happen | ~7 |
-| Koude happen | ~7 |
+| Voor bij de koffie | ~4 |
+| Borrelplanken | ~4 |
+| Verse broodjes | ~6 |
+| Warme happen | ~6 |
+| Koude happen | ~5 |
+| Specials | ~8 totaal |
 | Wijnen | ~10 wijnen totaal |
-| Picknick | ~2 |
+
+Items zonder vaste prijs (zoals de specials) laat je het prijsveld gewoon leeg —
+dan verdwijnt ook de stippellijn op de website.
 
 Tot een paar items extra past het automatisch (de tekst krimpt iets in). Daarna wordt
 het echt te druk en kan iets over de rand lopen.

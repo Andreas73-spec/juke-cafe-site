@@ -250,9 +250,12 @@ permalink: /menukaart-print.html
     }
     .grid-front > div { display: flex; flex-direction: column; gap: 4mm; }
     .grid-front > div > .section-box {
-      flex: 1;
+      flex: 1 1 auto;
       margin-bottom: 0;
     }
+    /* Koffie-vak groeit minder hard mee dan het borrelplanken-vak eronder,
+       zodat een korte lijst niet in een half leeg vlak zweeft. */
+    .grid-front > div:first-child > .section-box:first-child { flex-grow: 0.4; }
 
     /* === BACK grid === */
     .grid-back {
@@ -304,76 +307,85 @@ permalink: /menukaart-print.html
       text-transform: uppercase;
     }
 
-    /* === Picknick block === */
-    .picknick-block {
+    /* === Specials block === */
+    .specials-block {
       border: 0.5pt solid currentColor;
-      padding: 5mm;
+      padding: 4mm;
       text-align: center;
       position: relative;
     }
-    .picknick-block .picknick-icon {
+    .specials-block .specials-icon {
       position: absolute;
       top: 4mm;
       right: 4mm;
       width: 16mm;
       height: 10mm;
     }
-    .picknick-block .picknick-title {
+    .specials-block .specials-title {
       font-weight: 700;
       font-size: 10pt;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      margin: 0 0 2mm;
+      margin: 0 0 3mm;
     }
-    .picknick-block .picknick-sub {
+    .specials-block .specials-sub {
       font-size: 8.5pt;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 3mm;
-    }
-    .picknick-ing {
-      font-size: 8pt;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       line-height: 1.55;
-      margin-bottom: 1.5mm;
+      margin-top: 3mm;
+      margin-bottom: 0.5mm;
     }
-    .picknick-price {
-      font-weight: 700;
-      font-size: 10pt;
-      margin-bottom: 3mm;
+    .specials-block .specials-sub:first-of-type { margin-top: 0; }
+    .specials-block .specials-item {
+      font-size: 8.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1.5;
     }
-    .picknick-price::before { content: "€ "; }
+
+    /* === 'Iets te vieren' block === */
+    .event-block {
+      border: 0.5pt solid currentColor;
+      padding: 4mm;
+      text-align: center;
+    }
+    .event-block .event-text {
+      font-size: 8pt;
+      font-style: italic;
+      line-height: 1.45;
+    }
 
     /* === Catering block === */
     .catering-block {
       border: 0.5pt solid currentColor;
-      padding: 6mm 5mm;
+      padding: 4mm;
       text-align: center;
       position: relative;
     }
     .truck-illu {
       display: block;
-      margin: 0 auto 3mm;
-      width: 56mm;
-      height: 40mm;
+      margin: 0 auto 2mm;
+      width: 42mm;
+      height: 28mm;
+      object-fit: contain;
     }
     .catering-block .brand-name {
       font-family: "Plus Jakarta Sans", sans-serif;
       font-weight: 600;
-      font-size: 20pt;
+      font-size: 16pt;
       letter-spacing: 0.08em;
       line-height: 1.05;
     }
     .catering-block .brand-tag {
-      font-size: 8pt;
-      line-height: 1.5;
-      margin-top: 3mm;
+      font-size: 7.5pt;
+      line-height: 1.45;
+      margin-top: 2mm;
       opacity: 0.9;
     }
     .catering-block .brand-mail {
-      margin-top: 3mm;
-      font-size: 8.5pt;
+      margin-top: 2mm;
+      font-size: 8pt;
     }
     .catering-block .brand-mail::before {
       content: "✉ ";
@@ -408,7 +420,7 @@ permalink: /menukaart-print.html
           <div class="item-name">{{ item.naam }}{% if item.vega %} <span class="vega"></span>{% endif %}</div>
           {% if item.beschrijving %}<div class="item-desc">{{ item.beschrijving }}</div>{% endif %}
         </div>
-        <div class="item-price">{{ item.prijs }}</div>
+        {% if item.prijs %}<div class="item-price">{{ item.prijs }}</div>{% endif %}
       </li>
       {% endfor %}
     </ul>
@@ -492,23 +504,30 @@ permalink: /menukaart-print.html
           {% set sectie = menu.secties | sectie("Koude happen") %}{% if sectie %}{{ renderItems(sectie.items) }}{% endif %}
         </div>
 
-        <div class="picknick-block">
-          <svg class="picknick-icon" viewBox="0 0 60 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        {% set specials = menu.secties | sectie("Specials") %}
+        {% if specials %}
+        <div class="specials-block">
+          <svg class="specials-icon" viewBox="0 0 60 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
             <path d="M30 4 L 30 26" />
             <path d="M30 6 L 18 26 L 30 26 Z" />
             <path d="M30 6 L 42 26 L 30 26 Z" />
             <path d="M10 30 Q 30 33 50 30" />
           </svg>
-          {% set picknick = menu.secties | sectie("Picknick op het water") %}
-          {% if picknick %}
-          <div class="picknick-title">{{ picknick.titel }}</div>
-          <div class="picknick-sub">{{ picknick.ondertitel | replace("⛵", "") | trim }}</div>
-          {% for item in picknick.items %}
-            {% if item.beschrijving %}<div class="picknick-ing">{{ item.beschrijving | replace(".", "") }}</div>{% endif %}
-            <div class="picknick-price">{{ item.prijs }}</div>
+          <div class="specials-title">{{ specials.titel }}</div>
+          {% for sub in specials.subsecties %}
+            <div class="specials-sub">{{ sub.titel }}</div>
+            {% for item in sub.items %}
+              <div class="specials-item">{{ item.naam }}</div>
+            {% endfor %}
           {% endfor %}
-          {% endif %}
         </div>
+        {% endif %}
+
+        {% if menu.event_blok and menu.event_blok.tonen %}
+        <div class="event-block">
+          <div class="event-text">{{ menu.event_blok.titel }}<br/>{{ menu.event_blok.tekst }}</div>
+        </div>
+        {% endif %}
 
         <div class="catering-block">
           <img class="truck-illu" src="images/illu-truck.png" alt="JuKe Catering foodtruck" />

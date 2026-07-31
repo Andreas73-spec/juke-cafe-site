@@ -172,31 +172,43 @@ collections:
                 summary: "{{fields.naam}} — € {{fields.prijs}}"
                 hint: |
                   Maximaal aantal items dat netjes op de A4-print past per sectie:
-                  • Voor bij de koffie: ~5  • Borrelplanken: ~3  • Verse broodjes: ~7
-                  • Warme happen: ~7  • Koude happen: ~7  • Picknick: ~2
+                  • Voor bij de koffie: ~4  • Borrelplanken: ~4  • Verse broodjes: ~6
+                  • Warme happen: ~6  • Koude happen: ~5
                   Online is er geen limiet — daar scrollt het door.
+                  Laat de prijs leeg als een item geen vaste prijs heeft.
                 fields:
                   - { label: "Naam gerecht", name: "naam", widget: string }
                   - { label: "Beschrijving", name: "beschrijving", widget: text, required: false }
                   - { label: "Prijs (zonder €)", name: "prijs", widget: string, hint: "Bijv. '12,50'" }
                   - { label: "Vegetarisch?", name: "vega", widget: boolean, default: false, required: false }
 
-              - label: "Subsecties (alleen voor wijnen e.d.)"
+              - label: "Subsecties (voor Wijnen en Specials)"
                 name: "subsecties"
                 widget: list
                 required: false
                 summary: "{{fields.titel}}"
-                hint: "Bij wijnen passen ~10 wijnen in totaal netjes op de A4-print (verdeeld over wit/rosé/rood/cava)."
+                hint: |
+                  Gebruikt voor Wijnen (Wit / Rosé / Rood / Cava) en Specials
+                  (Homemade lemonade / Cocktails). Op de A4-print passen ~10 wijnen
+                  en ~8 specials in totaal.
                 fields:
-                  - { label: "Subsectietitel (Wit, Rood…)", name: "titel", widget: string }
-                  - label: "Wijnen in deze categorie"
+                  - { label: "Subsectietitel (Wit, Rood, Cocktails…)", name: "titel", widget: string }
+                  - label: "Items in deze categorie"
                     name: "items"
                     widget: list
-                    summary: "{{fields.naam}} — € {{fields.prijs}}"
+                    summary: "{{fields.naam}}{{fields.prijs}}"
                     fields:
                       - { label: "Naam", name: "naam", widget: string }
                       - { label: "Beschrijving", name: "beschrijving", widget: text, required: false }
-                      - { label: "Prijs (bijv. '4,95 — 27,50')", name: "prijs", widget: string }
+                      - { label: "Prijs (bijv. '5,75 — 29,50')", name: "prijs", widget: string, required: false, hint: "Laat leeg bij items zonder vaste prijs, zoals de specials." }
+
+          - label: "Blok 'Iets te vieren of organiseren?'"
+            name: "event_blok"
+            widget: object
+            fields:
+              - { label: "Blok tonen?", name: "tonen", widget: boolean, default: true }
+              - { label: "Titel", name: "titel", widget: string }
+              - { label: "Tekst", name: "tekst", widget: text, hint: "Noem je het e-mailadres? Dan wordt daar automatisch een klikbare link van gemaakt." }
 
           - label: "Voetnoot: takeaway-zinnetje"
             name: "voetnoot_takeaway"

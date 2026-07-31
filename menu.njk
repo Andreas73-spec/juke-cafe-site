@@ -88,6 +88,13 @@ permalink: /menu.html
     </section>
     {% endfor %}
 
+    {% if menu.event_blok and menu.event_blok.tonen %}
+    <section class="menu-event">
+      <h2>{{ menu.event_blok.titel }}</h2>
+      <p>{{ menu.event_blok.tekst | replace(site.contact.email, '<a href="mailto:' + site.contact.email + '">' + site.contact.email + '</a>') | safe }}</p>
+    </section>
+    {% endif %}
+
     <p class="menu-foot menu-takeaway">
       {{ menu.voetnoot_takeaway_intro }}<strong>{{ menu.voetnoot_takeaway_bold }}</strong>{{ menu.voetnoot_takeaway_outro }}
     </p>
