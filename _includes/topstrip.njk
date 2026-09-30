@@ -1,4 +1,10 @@
-{% if site.topstrip.tonen %}
+{% if site.seizoenssluiting and site.seizoenssluiting.actief %}
+<div class="top-strip">
+  <span>{{ site.seizoenssluiting.balk_tekst }}</span>
+  <span class="sep">·</span>
+  <a href="#seizoenssluiting" data-popup-open>Lees meer</a>
+</div>
+{% elif site.topstrip.tonen %}
 <div class="top-strip">
   <span>{{ site.topstrip.tekst }}</span>
   <span class="sep">·</span>

@@ -32,6 +32,22 @@ collections:
         label: "Site-instellingen"
         name: "site"
         fields:
+          - label: "Seizoenssluiting (winterstop)"
+            name: "seizoenssluiting"
+            widget: object
+            collapsed: false
+            hint: |
+              Eén schakelaar voor de hele site. Staat hij AAN, dan krijgen bezoekers een pop-up,
+              staat de sluiting in de balk bovenaan en verdwijnen de openingstijden.
+              Zet hem UIT zodra het terras weer opengaat — dan staat alles weer zoals normaal.
+            fields:
+              - { label: "Seizoenssluiting actief?", name: "actief", widget: boolean, default: false }
+              - { label: "Tekst in de balk bovenaan", name: "balk_tekst", widget: string, hint: "Kort houden, bijv. 'Seizoenssluiting · wel open voor evenementen & catering'" }
+              - { label: "Korte regel onder de homepage-foto", name: "status_tekst", widget: string, required: false, hint: "Vervangt tijdelijk de openingstijden in die regel, bijv. 'Terras vanaf maart weer open'" }
+              - { label: "Titel pop-up", name: "titel", widget: string }
+              - { label: "Tekst pop-up", name: "tekst", widget: text, hint: "Laat een witregel tussen alinea's. De eerste alinea wordt dikgedrukt én verschijnt ook bij de openingstijden." }
+              - { label: "Afsluitende zin (uitgelicht in roze)", name: "afsluiter", widget: string, required: false }
+
           - label: "Balk bovenaan (heropening / aankondiging)"
             name: "topstrip"
             widget: object

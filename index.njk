@@ -53,11 +53,13 @@ permalink: /index.html
       "addressCountry": "NL"
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 52.197, "longitude": 5.087 },
+    {%- if not (site.seizoenssluiting and site.seizoenssluiting.actief) %}
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "19:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "19:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "19:00" }
     ],
+    {%- endif %}
     "sameAs": ["{{ site.contact.instagram_url }}"]
   }
   </script>
@@ -66,7 +68,7 @@ permalink: /index.html
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Caveat:wght@500;700&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=menu3" />
+  <link rel="stylesheet" href="styles.css?v=seizoen1" />
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -116,7 +118,12 @@ permalink: /index.html
     </div>
   </section>
   <div class="hero-status">
-    {% for tag in site.hero_status %}<span>{{ tag | safe }}</span>{% endfor %}
+    {% if site.seizoenssluiting and site.seizoenssluiting.actief %}
+      {% for tag in site.hero_status | zonderTijden %}<span>{{ tag | safe }}</span>{% endfor %}
+      {% if site.seizoenssluiting.status_tekst %}<span>{{ site.seizoenssluiting.status_tekst }}</span>{% endif %}
+    {% else %}
+      {% for tag in site.hero_status %}<span>{{ tag | safe }}</span>{% endfor %}
+    {% endif %}
   </div>
 
   <section class="split is-reverse">
@@ -173,11 +180,19 @@ permalink: /index.html
 
       <aside class="hours" aria-label="Openingstijden">
         <h3>Openingstijden</h3>
+        {% if site.seizoenssluiting and site.seizoenssluiting.actief %}
+        <div class="hours-closed">
+          <p class="hours-closed-label">{{ site.seizoenssluiting.titel }}</p>
+          <p>{{ (site.seizoenssluiting.tekst | alineas) | first }}</p>
+          {% if site.seizoenssluiting.afsluiter %}<p class="hours-closed-terug">{{ site.seizoenssluiting.afsluiter }}</p>{% endif %}
+        </div>
+        {% else %}
         <dl>
           {% for dag in site.openingstijden %}
           <div{% if dag.gesloten %} class="is-closed"{% endif %}><dt>{{ dag.dag }}</dt><dd>{{ dag.tijd }}</dd></div>
           {% endfor %}
         </dl>
+        {% endif %}
         <p class="hours-note">{{ site.openingstijden_noot }}</p>
       </aside>
     </div>
@@ -247,6 +262,7 @@ permalink: /index.html
     </div>
   </section>
 
+  {% include "seizoenspopup.njk" %}
   {% include "footer.njk" %}
   {% include "scripts.njk" %}
 </body>

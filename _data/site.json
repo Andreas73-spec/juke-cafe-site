@@ -1,4 +1,12 @@
 {
+  "seizoenssluiting": {
+    "actief": true,
+    "balk_tekst": "Seizoenssluiting · wel open voor evenementen & catering",
+    "status_tekst": "Terras vanaf maart weer open",
+    "titel": "Seizoenssluiting",
+    "tekst": "Ons café is momenteel gesloten voor reguliere bezoekers, maar JuKe blijft gewoon geopend voor evenementen!\n\nHet hele jaar door kun je bij ons terecht voor borrels, lunches, high tea’s en andere evenementen. Daarnaast verzorgen we verschillende arrangementen en cateringen aan huis of op locatie. Van een gezellige borrel tot een compleet diner: we denken graag met je mee.\n\nWil je iets organiseren bij JuKe of op een locatie naar keuze? Neem gerust contact met ons op, er is het hele jaar door van alles mogelijk.",
+    "afsluiter": "Vanaf maart gaat ons terras weer open en verwelkomen we jullie graag terug aan het water!"
+  },
   "topstrip": {
     "tekst": "Heropening 23 mei · 16:00 uur",
     "tonen": true

@@ -647,6 +647,149 @@ body.nav-open { overflow: hidden; }
   opacity: 0.7;
 }
 
+/* Openingstijden tijdens de seizoenssluiting */
+.hours-closed p {
+  margin: 0 0 0.8rem;
+  color: var(--marine);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.hours-closed .hours-closed-label {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 10rem;
+  background: var(--marine);
+  color: var(--wit);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.hours-closed .hours-closed-terug {
+  font-weight: 600;
+  color: var(--blauw);
+}
+
+/* ---------- Seizoenssluiting-pop-up ---------- */
+html.popup-open { overflow: hidden; }
+
+.seizoenspopup {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  width: min(560px, calc(100vw - 2rem));
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  overflow: visible;
+  color: var(--marine);
+}
+.seizoenspopup::backdrop {
+  background: rgba(34, 22, 56, 0.62);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+.seizoenspopup-inner {
+  position: relative;
+  background: var(--beige);
+  border-radius: 18px;
+  border-top: 5px solid var(--blauw);
+  box-shadow: 0 30px 80px -20px rgba(34, 22, 56, 0.55);
+  padding: 2.4rem 2.4rem 2.2rem;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  text-align: center;
+  outline: none;
+}
+.seizoenspopup-logo {
+  display: block;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 0.8rem;
+}
+.seizoenspopup h2 {
+  font-size: clamp(1.9rem, 6vw, 2.6rem);
+  color: var(--blauw);
+}
+.seizoenspopup-wave {
+  display: block;
+  width: 150px;
+  height: 16px;
+  margin: 0.9rem auto 1.4rem;
+}
+.seizoenspopup-tekst p {
+  margin: 0 0 1rem;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+.seizoenspopup-tekst p:first-child {
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.seizoenspopup-afsluiter {
+  margin: 1.3rem 0 0;
+  padding: 1rem 1.2rem;
+  background: rgba(196, 94, 142, 0.1);
+  border-radius: 12px;
+  color: var(--blauw);
+  font-weight: 700;
+  line-height: 1.5;
+}
+.seizoenspopup-acties {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.1rem 1.3rem;
+  margin-top: 1.8rem;
+}
+.seizoenspopup-acties button.btn {
+  background: transparent;
+  cursor: pointer;
+}
+.seizoenspopup-sluit {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--marine);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.seizoenspopup-sluit:hover { background: rgba(34, 22, 56, 0.07); }
+.seizoenspopup-sluit:focus-visible {
+  outline: 2px solid var(--blauw);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .seizoenspopup[open] .seizoenspopup-inner { animation: popup-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .seizoenspopup[open]::backdrop { animation: popup-fade 0.35s ease-out; }
+}
+@keyframes popup-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes popup-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (max-width: 560px) {
+  .seizoenspopup-inner { padding: 2.2rem 1.25rem 1.5rem; }
+  .seizoenspopup-logo { width: 72px; height: 72px; }
+  .seizoenspopup-tekst p { font-size: 0.94rem; }
+  .seizoenspopup-acties .btn { width: 100%; }
+}
+
 /* ---------- Catering page ---------- */
 .catering-main {
   max-width: var(--max);

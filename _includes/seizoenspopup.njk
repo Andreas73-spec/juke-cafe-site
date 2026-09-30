@@ -1,0 +1,67 @@
+{# Seizoenssluiting-pop-up. Aan/uit via Site-instellingen → Seizoenssluiting in /admin/. #}
+{% set sluiting = site.seizoenssluiting %}
+{% if sluiting and sluiting.actief %}
+<dialog id="seizoenssluiting" class="seizoenspopup" aria-labelledby="seizoenspopup-titel">
+  <div class="seizoenspopup-inner" tabindex="-1" autofocus>
+    <button type="button" class="seizoenspopup-sluit" data-popup-sluit aria-label="Melding sluiten">&times;</button>
+    <img class="seizoenspopup-logo" src="images/logo-pink-transparant.png" alt="" width="92" height="92" />
+    <h2 id="seizoenspopup-titel">{{ sluiting.titel }}</h2>
+    <svg class="seizoenspopup-wave" viewBox="0 0 260 24" fill="none" aria-hidden="true">
+      <path d="M3 12 Q 23 2, 43 12 T 83 12 T 123 12 T 163 12 T 203 12 T 257 12" stroke="#E879B5" stroke-width="3" stroke-linecap="round" />
+    </svg>
+    <div class="seizoenspopup-tekst">
+      {% for alinea in sluiting.tekst | alineas %}<p>{{ alinea }}</p>{% endfor %}
+    </div>
+    {% if sluiting.afsluiter %}<p class="seizoenspopup-afsluiter">{{ sluiting.afsluiter }}</p>{% endif %}
+    <div class="seizoenspopup-acties">
+      <a class="btn btn-primary" href="mailto:{{ site.contact.email }}">Neem contact op</a>
+      {% if page.url != "/catering.html" %}
+      <a class="btn btn-ghost is-dark" href="catering.html">Bekijk catering</a>
+      {% else %}
+      <button type="button" class="btn btn-ghost is-dark" data-popup-sluit>Verder kijken</button>
+      {% endif %}
+    </div>
+  </div>
+</dialog>
+<script>
+  (function () {
+    var d = document.getElementById('seizoenssluiting');
+    if (!d || typeof d.showModal !== 'function') return;
+
+    // Sleutel op basis van de tekst: past Kelly de tekst aan, dan ziet iedereen hem opnieuw
+    var s = d.textContent, h = 0;
+    for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+    var key = 'juke-seizoenssluiting-' + h;
+    var markeer = function () { try { sessionStorage.setItem(key, '1'); } catch (e) {} };
+
+    var open = function () {
+      if (d.open) return;
+      d.showModal();
+      document.documentElement.classList.add('popup-open');
+    };
+
+    d.addEventListener('close', function () {
+      markeer();
+      document.documentElement.classList.remove('popup-open');
+    });
+    // Klik op de donkere achtergrond sluit de melding
+    d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+    d.querySelectorAll('[data-popup-sluit]').forEach(function (b) {
+      b.addEventListener('click', function () { d.close(); });
+    });
+    d.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', markeer); });
+
+    // "Lees meer" in de balk bovenaan opent hem opnieuw
+    document.querySelectorAll('[data-popup-open]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); open(); });
+    });
+
+    // Niet automatisch tonen over een Netlify-uitnodiging of wachtwoordherstel heen
+    if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash)) return;
+
+    var gezien = false;
+    try { gezien = sessionStorage.getItem(key) === '1'; } catch (e) {}
+    if (!gezien) setTimeout(open, 400);
+  })();
+</script>
+{% endif %}

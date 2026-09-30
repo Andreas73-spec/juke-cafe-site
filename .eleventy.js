@@ -27,6 +27,21 @@ module.exports = function (eleventyConfig) {
     return n.toFixed(2).replace(".", ",");
   });
 
+  // Tekst met witregels opsplitsen in alinea's (voor CMS-tekstvelden)
+  eleventyConfig.addFilter("alineas", function (tekst) {
+    return String(tekst || "")
+      .split(/\n\s*\n/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+  });
+
+  // Items met een tijdstip (bv. "09:00 – 19:00") eruit filteren — gebruikt
+  // tijdens de seizoenssluiting zodat er nergens openingstijden blijven staan.
+  eleventyConfig.addFilter("zonderTijden", function (lijst) {
+    if (!Array.isArray(lijst)) return [];
+    return lijst.filter((t) => !/\d{1,2}[:.]\d{2}/.test(String(t)));
+  });
+
   // Zoek een menu-sectie op titel (case-insensitive, accent-tolerant)
   // Gebruik: {{ menu.secties | sectie("Voor bij de koffie") }}
   eleventyConfig.addFilter("sectie", function (secties, titel) {

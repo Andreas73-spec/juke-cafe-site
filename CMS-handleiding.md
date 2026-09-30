@@ -83,6 +83,24 @@ op de site.
 
 ---
 
+### Seizoenssluiting (winterstop) aan- of uitzetten
+
+Bovenaan **Site-instellingen** staat het blok **Seizoenssluiting**. Eén schakelaar
+regelt de hele site:
+
+| Schakelaar AAN | Schakelaar UIT |
+| --- | --- |
+| Pop-up met de sluitingstekst (bezoekers kunnen hem wegklikken, verschijnt één keer per bezoek) | Geen pop-up |
+| Balk bovenaan: "Seizoenssluiting · wel open voor evenementen & catering" | Gewone balk (heropening / aankondiging) |
+| Openingstijden vervangen door de sluitingsmelding | Gewone openingstijden |
+| Tijden weg uit de regel onder de homepage-foto | Gewone regel met tijden |
+
+**In maart:** zet *Seizoenssluiting actief?* uit → Publish. Alles staat dan weer zoals
+normaal; de openingstijden zelf zijn onderweg niet aangepast.
+
+Tip: laat ook in **Google Bedrijfsprofiel** weten dat je tijdelijk gesloten bent —
+Google toont die openingstijden in de zoekresultaten, los van de website.
+
 ## 4. Lokaal werken (alleen voor ontwikkelaar)
 
 ```bash
