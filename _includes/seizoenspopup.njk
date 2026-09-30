@@ -2,8 +2,8 @@
 {% set sluiting = site.seizoenssluiting %}
 {% if sluiting and sluiting.actief %}
 <dialog id="seizoenssluiting" class="seizoenspopup" aria-labelledby="seizoenspopup-titel">
+  <button type="button" class="seizoenspopup-sluit" data-popup-sluit aria-label="Melding sluiten"><span aria-hidden="true"></span></button>
   <div class="seizoenspopup-inner" tabindex="-1" autofocus>
-    <button type="button" class="seizoenspopup-sluit" data-popup-sluit aria-label="Melding sluiten">&times;</button>
     <img class="seizoenspopup-logo" src="images/logo-pink-transparant.png" alt="" width="92" height="92" />
     <h2 id="seizoenspopup-titel">{{ sluiting.titel }}</h2>
     <svg class="seizoenspopup-wave" viewBox="0 0 260 24" fill="none" aria-hidden="true">
@@ -13,7 +13,7 @@
       {% for alinea in sluiting.tekst | alineas %}<p>{{ alinea }}</p>{% endfor %}
     </div>
     {% if sluiting.afsluiter %}<p class="seizoenspopup-afsluiter">{{ sluiting.afsluiter }}</p>{% endif %}
-    <div class="seizoenspopup-acties">
+    <div class="cta-row">
       <a class="btn btn-primary" href="mailto:{{ site.contact.email }}">Neem contact op</a>
       {% if page.url != "/catering.html" %}
       <a class="btn btn-ghost is-dark" href="catering.html">Bekijk catering</a>
@@ -40,14 +40,17 @@
       document.documentElement.classList.add('popup-open');
     };
 
-    d.addEventListener('close', function () {
+    var opruimen = function () {
       markeer();
       document.documentElement.classList.remove('popup-open');
-    });
+    };
+    var sluit = function () { d.close(); opruimen(); };
+    // 'close' vangt ook Esc af; de knoppen ruimen daarnaast meteen zelf op
+    d.addEventListener('close', opruimen);
     // Klik op de donkere achtergrond sluit de melding
-    d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+    d.addEventListener('click', function (e) { if (e.target === d) sluit(); });
     d.querySelectorAll('[data-popup-sluit]').forEach(function (b) {
-      b.addEventListener('click', function () { d.close(); });
+      b.addEventListener('click', sluit);
     });
     d.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', markeer); });
 
@@ -59,9 +62,11 @@
     // Niet automatisch tonen over een Netlify-uitnodiging of wachtwoordherstel heen
     if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash)) return;
 
-    var gezien = false;
-    try { gezien = sessionStorage.getItem(key) === '1'; } catch (e) {}
-    if (!gezien) setTimeout(open, 400);
+    var gezien = function () {
+      try { return sessionStorage.getItem(key) === '1'; } catch (e) { return false; }
+    };
+    // Vlak voor het openen nog een keer checken: al gesloten via "Lees meer"? Dan niet opnieuw.
+    if (!gezien()) setTimeout(function () { if (!gezien()) open(); }, 400);
   })();
 </script>
 {% endif %}

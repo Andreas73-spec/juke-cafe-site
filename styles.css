@@ -662,8 +662,8 @@ body.nav-open { overflow: hidden; }
   background: var(--marine);
   color: var(--wit);
   font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 .hours-closed .hours-closed-terug {
@@ -671,7 +671,10 @@ body.nav-open { overflow: hidden; }
   color: var(--blauw);
 }
 
-/* ---------- Seizoenssluiting-pop-up ---------- */
+/* ---------- Seizoenssluiting-pop-up ----------
+   Volgt DESIGN.md: recht paneel met roze bovenrand (zoals .hours),
+   sluitknop = ronde icoonknop (zoals .nav-toggle), afsluiter = callout
+   (zoals .menu-takeaway), knoppen in de gewone .cta-row. */
 html.popup-open { overflow: hidden; }
 
 .seizoenspopup {
@@ -692,10 +695,9 @@ html.popup-open { overflow: hidden; }
 .seizoenspopup-inner {
   position: relative;
   background: var(--beige);
-  border-radius: 18px;
-  border-top: 5px solid var(--blauw);
-  box-shadow: 0 30px 80px -20px rgba(34, 22, 56, 0.55);
-  padding: 2.4rem 2.4rem 2.2rem;
+  border-top: 4px solid var(--blauw);
+  box-shadow: var(--shadow);
+  padding: 2.6rem 2.4rem 2.2rem;
   max-height: calc(100dvh - 2rem);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -709,8 +711,10 @@ html.popup-open { overflow: hidden; }
   margin: 0 auto 0.8rem;
 }
 .seizoenspopup h2 {
-  font-size: clamp(1.9rem, 6vw, 2.6rem);
-  color: var(--blauw);
+  /* Eén lang woord: schaalt mee zodat het ook op een 320px-telefoon in de kaart past */
+  font-size: clamp(1.6rem, 8vw, 2.6rem);
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 .seizoenspopup-wave {
   display: block;
@@ -718,64 +722,69 @@ html.popup-open { overflow: hidden; }
   height: 16px;
   margin: 0.9rem auto 1.4rem;
 }
-.seizoenspopup-tekst p {
-  margin: 0 0 1rem;
-  font-size: 0.98rem;
-  line-height: 1.65;
-}
+.seizoenspopup-tekst p { margin: 0 0 1rem; }
 .seizoenspopup-tekst p:first-child {
-  font-size: 1.08rem;
-  font-weight: 700;
-  line-height: 1.5;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.45;
 }
 .seizoenspopup-afsluiter {
-  margin: 1.3rem 0 0;
-  padding: 1rem 1.2rem;
-  background: rgba(196, 94, 142, 0.1);
-  border-radius: 12px;
+  margin: 1.4rem 0 0;
+  padding: 1.1rem 1.3rem;
+  border: 1.5px dashed var(--blauw);
+  border-radius: 8px;
   color: var(--blauw);
   font-weight: 700;
   line-height: 1.5;
 }
-.seizoenspopup-acties {
-  display: flex;
-  flex-wrap: wrap;
+.seizoenspopup .cta-row {
   justify-content: center;
-  gap: 1.1rem 1.3rem;
-  margin-top: 1.8rem;
+  margin-top: 1.9rem;
 }
-.seizoenspopup-acties button.btn {
+.seizoenspopup .cta-row button.btn {
   background: transparent;
   cursor: pointer;
 }
+
+/* Sluitknop: zelfde ronde icoonknop als het hamburgermenu.
+   Staat buiten het scrollende deel, zodat hij op mobiel altijd in beeld blijft. */
 .seizoenspopup-sluit {
   position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
+  z-index: 2;
+  top: 1rem;
+  right: 1rem;
   width: 44px;
   height: 44px;
   display: grid;
   place-items: center;
-  border: 0;
+  padding: 0;
+  background: var(--marine);
+  border: 1.5px solid var(--marine);
   border-radius: 50%;
-  background: transparent;
-  color: var(--marine);
-  font-size: 1.8rem;
-  line-height: 1;
+  outline: 1.5px solid var(--blauw);
+  outline-offset: 4px;
   cursor: pointer;
+  transition: outline-offset 0.2s ease;
 }
-.seizoenspopup-sluit:hover { background: rgba(34, 22, 56, 0.07); }
-.seizoenspopup-sluit:focus-visible {
-  outline: 2px solid var(--blauw);
-  outline-offset: 2px;
+.seizoenspopup-sluit:hover,
+.seizoenspopup-sluit:focus-visible { outline-offset: 6px; }
+.seizoenspopup-sluit span,
+.seizoenspopup-sluit span::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--oranje);
+  border-radius: 2px;
 }
+.seizoenspopup-sluit span { transform: rotate(45deg); }
+.seizoenspopup-sluit span::after { content: ""; transform: rotate(90deg); }
 
 @media (prefers-reduced-motion: no-preference) {
   .seizoenspopup[open] .seizoenspopup-inner { animation: popup-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
   .seizoenspopup[open]::backdrop { animation: popup-fade 0.35s ease-out; }
 }
 @keyframes popup-in {
-  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
 }
 @keyframes popup-fade {
@@ -783,11 +792,10 @@ html.popup-open { overflow: hidden; }
   to   { opacity: 1; }
 }
 
-@media (max-width: 560px) {
-  .seizoenspopup-inner { padding: 2.2rem 1.25rem 1.5rem; }
+@media (max-width: 520px) {
+  .seizoenspopup-inner { padding: 2.4rem 1.25rem 1.5rem; }
   .seizoenspopup-logo { width: 72px; height: 72px; }
-  .seizoenspopup-tekst p { font-size: 0.94rem; }
-  .seizoenspopup-acties .btn { width: 100%; }
+  .seizoenspopup-sluit { top: 0.85rem; right: 0.85rem; }
 }
 
 /* ---------- Catering page ---------- */
@@ -1301,8 +1309,7 @@ html.popup-open { overflow: hidden; }
 /* Blok 'Iets te vieren of organiseren?' onder de kaart */
 .menu-event {
   background: var(--marine);
-  color: #fff;
-  border-radius: 10px;
+  color: var(--wit);
   padding: 2.2rem 2.4rem;
   margin-top: 1rem;
   text-align: center;
